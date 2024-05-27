@@ -17,7 +17,7 @@ const fonts = {
     line-height: normal;
   `,
 
-  SingBtnText: css`
+  SignBtnText: css`
     font-family: Inter;
     font-size: 2rem;
     font-style: normal;

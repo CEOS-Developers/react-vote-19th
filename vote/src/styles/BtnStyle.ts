@@ -6,7 +6,7 @@ export const BtnSign = styled.button`
 
   background-color: ${({ theme }) => theme.colors.main_blue};
   color: ${({ theme }) => theme.colors.white};
-  ${({ theme }) => theme.fonts.SingBtnText};
+  ${({ theme }) => theme.fonts.SignBtnText};
 `;
 
 /*투표 페이지 상단 버튼 스타일*/
