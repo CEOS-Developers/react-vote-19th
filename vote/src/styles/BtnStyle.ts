@@ -33,6 +33,12 @@ export const BtnBig = styled.button`
   ${({ theme }) => theme.fonts.BigBtnText};
 
   cursor: pointer;
+
+  /* 마우스 오버 시 백그라운드 색상 및 텍스트 색상 변경 */
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: ${({ theme }) => theme.colors.white}; /* 텍스트 색상 변경 */
+  }
 `;
 
 /*투표 페이지 하단 버튼 스타일*/

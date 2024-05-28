@@ -38,7 +38,7 @@ export default function VotePart() {
       <VoteWrappers>
         <PartWrapper>
           <VoteWrapper onClick={() => navigate("/vote/part")}>
-            Front-END
+            FRONT-END
             <br />
             파트장 투표
           </VoteWrapper>
