@@ -5,7 +5,8 @@ import SignIn from "@pages/SignIn";
 import Signup from "@pages/SignUp";
 import VoteLayout from "@components/layout/VoteLayout";
 import VoteMain from "@pages/VoteMain";
-import VoteFe from "@pages/VoteFe";
+import VotePart from "@pages/VotePart";
+import VoteDemo from "@pages/VoteDemo";
 
 export const Router = createBrowserRouter([
   {
@@ -21,7 +22,8 @@ export const Router = createBrowserRouter([
         element: <VoteLayout />,
         children: [
           { path: "/vote/main", element: <VoteMain /> },
-          { path: "/vote/fe", element: <VoteFe /> },
+          { path: "/vote/part", element: <VotePart /> },
+          { path: "/vote/demo", element: <VoteDemo /> },
         ],
       },
     ],

@@ -20,7 +20,9 @@ export const BtnSmall = styled.button`
 
 /*투표 페이지 바로가기 버튼 스타일*/
 export const BtnBig = styled.button`
+  display: flex;
   align-items: center;
+  justify-content: center;
   width: 39.4rem;
   height: 40.6rem;
 
@@ -29,6 +31,8 @@ export const BtnBig = styled.button`
 
   background-color: ${({ theme }) => theme.colors.white};
   ${({ theme }) => theme.fonts.BigBtnText};
+
+  cursor: pointer;
 `;
 
 /*투표 페이지 하단 버튼 스타일*/
