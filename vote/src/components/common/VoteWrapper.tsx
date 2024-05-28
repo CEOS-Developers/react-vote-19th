@@ -2,23 +2,20 @@ import styled from "styled-components";
 import { BtnBig } from "@styles/BtnStyle";
 
 interface VoteWrapperProps {
-  text: string;
-  onClick: any;
+  onClick: () => void;
+  children: React.ReactNode;
 }
 
 const Button = styled(BtnBig)``;
 
-const ButtonText = styled.p`
-  width: 28.3rem;
-  flex-shrink: 0;
-`;
+const ButtonText = styled.p``;
 
 export default function VoteWrapper(props: VoteWrapperProps) {
-  const { text, onClick } = props;
+  const { onClick, children } = props;
 
   return (
     <Button>
-      <ButtonText onClick={onClick}>{text}</ButtonText>
+      <ButtonText onClick={onClick}>{children}</ButtonText>
     </Button>
   );
 }

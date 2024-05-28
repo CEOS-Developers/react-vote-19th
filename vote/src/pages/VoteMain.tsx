@@ -33,14 +33,16 @@ export default function VoteMain() {
       <VoteHeader />
       <HeaderText>파트장 / 데모데이 투표</HeaderText>
       <VoteWrappers>
-        <VoteWrapper
-          onClick={() => navigate("/vote/part")}
-          text="파트장 투표 바로가기"
-        />
-        <VoteWrapper
-          onClick={() => navigate("/vote/demo")}
-          text="데모데이 투표 바로가기"
-        />
+        <VoteWrapper onClick={() => navigate("/vote/part")}>
+          파트장 투표
+          <br />
+          바로가기
+        </VoteWrapper>
+        <VoteWrapper onClick={() => navigate("/vote/demo")}>
+          데모데이 투표
+          <br />
+          바로가기
+        </VoteWrapper>
       </VoteWrappers>
     </Section>
   );

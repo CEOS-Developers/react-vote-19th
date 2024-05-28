@@ -37,17 +37,19 @@ export default function VotePart() {
       <HeaderText>파트장 투표</HeaderText>
       <VoteWrappers>
         <PartWrapper>
-          <VoteWrapper
-            onClick={() => navigate("/vote/part")}
-            text="FRONT-END 파트장 투표"
-          />
+          <VoteWrapper onClick={() => navigate("/vote/part")}>
+            Front-END
+            <br />
+            파트장 투표
+          </VoteWrapper>
           <VoteBtn text="결과보기" />
         </PartWrapper>
         <PartWrapper>
-          <VoteWrapper
-            onClick={() => navigate("/vote/part")}
-            text="BACK-END 파트장 투표"
-          />
+          <VoteWrapper onClick={() => navigate("/vote/part")}>
+            BACK-END
+            <br />
+            파트장 투표
+          </VoteWrapper>
           <VoteBtn text="결과보기" />
         </PartWrapper>
       </VoteWrappers>
