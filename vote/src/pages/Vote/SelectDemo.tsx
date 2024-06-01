@@ -1,5 +1,6 @@
 import VoteHeader from "@components/common/VoteHeader";
 import VoteBtn from "@components/common/VoteBtn";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Section = styled.section`
@@ -25,13 +26,18 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function VoteDemo() {
+  const navigate = useNavigate();
+
   return (
     <Section>
       <VoteHeader />
       <HeaderText>데모데이 투표</HeaderText>
       <ButtonWrapper>
-        <VoteBtn text="투표하기" />
-        <VoteBtn text="결과보기" />
+        <VoteBtn text="투표하기" onClick={() => navigate("/vote/demo")} />
+        <VoteBtn
+          text="결과보기"
+          onClick={() => navigate("/vote/result/demo")}
+        />
       </ButtonWrapper>
     </Section>
   );

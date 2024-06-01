@@ -10,6 +10,9 @@ import SelectDemo from "@pages/Vote/SelectDemo";
 import VoteFront from "@pages/Vote/VoteFront";
 import VoteBack from "@pages/Vote/VoteBack";
 import VoteDemo from "@pages/Vote/VoteDemo";
+import ResultFront from "@pages/Result/ResultFront";
+import ResultBack from "@pages/Result/ResultBack";
+import ResultDemo from "@pages/Result/ResultDemo";
 
 export const Router = createBrowserRouter([
   {
@@ -30,6 +33,9 @@ export const Router = createBrowserRouter([
           { path: "/vote/front", element: <VoteFront /> },
           { path: "/vote/back", element: <VoteBack /> },
           { path: "/vote/demo", element: <VoteDemo /> },
+          { path: "/vote/result/front", element: <ResultFront /> },
+          { path: "/vote/result/back", element: <ResultBack /> },
+          { path: "/vote/result/demo", element: <ResultDemo /> },
         ],
       },
     ],

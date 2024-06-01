@@ -42,7 +42,10 @@ export default function VotePart() {
             <br />
             파트장 투표
           </VoteWrapper>
-          <VoteBtn text="결과보기" />
+          <VoteBtn
+            text="결과보기"
+            onClick={() => navigate("/vote/result/front")}
+          />
         </PartWrapper>
         <PartWrapper>
           <VoteWrapper onClick={() => navigate("/vote/back")}>
@@ -50,7 +53,10 @@ export default function VotePart() {
             <br />
             파트장 투표
           </VoteWrapper>
-          <VoteBtn text="결과보기" />
+          <VoteBtn
+            text="결과보기"
+            onClick={() => navigate("/vote/result/back")}
+          />
         </PartWrapper>
       </VoteWrappers>
     </div>
