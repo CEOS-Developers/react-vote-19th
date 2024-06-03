@@ -3,7 +3,7 @@ import { BtnMid } from "@styles/BtnStyle";
 
 interface VoteBtnProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button = styled(BtnMid)<{ $seeResult: boolean }>`

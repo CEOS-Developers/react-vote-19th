@@ -34,10 +34,7 @@ export default function VoteDemo() {
       <HeaderText>데모데이 투표</HeaderText>
       <ButtonWrapper>
         <VoteBtn text="투표하기" onClick={() => navigate("/vote/demo")} />
-        <VoteBtn
-          text="결과보기"
-          onClick={() => navigate("/vote/result/demo")}
-        />
+        <VoteBtn text="결과보기" onClick={() => navigate("/result/demo")} />
       </ButtonWrapper>
     </Section>
   );

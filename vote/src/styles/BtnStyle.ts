@@ -21,18 +21,15 @@ export const BtnSmall = styled.button`
 /*투표 페이지 바로가기 버튼 스타일*/
 export const BtnBig = styled.button`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 39.4rem;
-  height: 40.6rem;
 
   border-radius: 2rem;
   border: 3px solid ${({ theme }) => theme.colors.main_blue};
 
   background-color: ${({ theme }) => theme.colors.white};
   ${({ theme }) => theme.fonts.BigBtnText};
-
-  cursor: pointer;
 
   /* 마우스 오버 시 백그라운드 색상 및 텍스트 색상 변경 */
   &:hover {

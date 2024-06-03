@@ -52,7 +52,7 @@ const fonts = {
     font-size: 4rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 8rem; /* 200% */
+    line-height: 6rem; /* 200% */
   `,
 
   TeamName_Small: css`

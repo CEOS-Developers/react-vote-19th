@@ -4,6 +4,11 @@ import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
 const HeaderText = styled.h1`
   display: flex;
   justify-content: center;
@@ -32,33 +37,33 @@ export default function VotePart() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <Section>
       <VoteHeader />
       <HeaderText>파트장 투표</HeaderText>
       <VoteWrappers>
         <PartWrapper>
-          <VoteWrapper onClick={() => navigate("/vote/front")}>
+          <VoteWrapper
+            onClick={() => navigate("/vote/front")}
+            width="39.4rem"
+            height="40.6rem">
             FRONT-END
             <br />
             파트장 투표
           </VoteWrapper>
-          <VoteBtn
-            text="결과보기"
-            onClick={() => navigate("/vote/result/front")}
-          />
+          <VoteBtn text="결과보기" onClick={() => navigate("/result/front")} />
         </PartWrapper>
         <PartWrapper>
-          <VoteWrapper onClick={() => navigate("/vote/back")}>
+          <VoteWrapper
+            onClick={() => navigate("/vote/back")}
+            width="39.4rem"
+            height="40.6rem">
             BACK-END
             <br />
             파트장 투표
           </VoteWrapper>
-          <VoteBtn
-            text="결과보기"
-            onClick={() => navigate("/vote/result/back")}
-          />
+          <VoteBtn text="결과보기" onClick={() => navigate("/result/back")} />
         </PartWrapper>
       </VoteWrappers>
-    </div>
+    </Section>
   );
 }
