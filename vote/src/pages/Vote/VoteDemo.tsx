@@ -1,3 +1,4 @@
+import { useState } from "react";
 import VoteHeader from "@components/common/VoteHeader";
 import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
@@ -54,6 +55,20 @@ const ButtonWrapper = styled.div`
 
 export default function VoteDemo() {
   const navigate = useNavigate();
+  const [selectedTeam, setSelectedTeam] = useState(null);
+
+  const handleSelected = (itemKey: any) => {
+    if (selectedTeam === itemKey) {
+      setSelectedTeam(null);
+    } else {
+      setSelectedTeam(itemKey);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log("선택된 항목:", selectedTeam);
+    /* API 연결 */
+  };
 
   return (
     <Section>
@@ -62,13 +77,18 @@ export default function VoteDemo() {
       <Wrapper>
         <VoteItemWrappers>
           {DemoItems.map((item) => (
-            <VoteWrapper key={item.key} width="38rem" height="14.5rem">
+            <VoteWrapper
+              key={item.key}
+              width="38rem"
+              height="14.5rem"
+              onClick={() => handleSelected(item.key)}
+              $isSelected={selectedTeam === item.key}>
               <TeamNameMid>{item.name}</TeamNameMid>
             </VoteWrapper>
           ))}
         </VoteItemWrappers>
         <ButtonWrapper>
-          <VoteBtn text="투표하기" />
+          <VoteBtn text="투표하기" onClick={handleSubmit} />
           <VoteBtn text="결과보기" onClick={() => navigate("/result/demo")} />
         </ButtonWrapper>
       </Wrapper>

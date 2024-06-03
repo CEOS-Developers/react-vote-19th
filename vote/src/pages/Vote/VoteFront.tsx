@@ -1,3 +1,4 @@
+import { useState } from "react";
 import VoteHeader from "@components/common/VoteHeader";
 import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
@@ -63,6 +64,20 @@ const ButtonWrapper = styled.div`
 
 export default function VoteFront() {
   const navigate = useNavigate();
+  const [selectedFront, setSelectedFront] = useState(null);
+
+  const handleSelected = (itemKey: any) => {
+    if (selectedFront === itemKey) {
+      setSelectedFront(null);
+    } else {
+      setSelectedFront(itemKey);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log("선택된 항목:", selectedFront);
+    /* API 연결 */
+  };
 
   return (
     <Section>
@@ -71,14 +86,17 @@ export default function VoteFront() {
       <Wrapper>
         <VoteItemWrappers>
           {FrontItems.map((item) => (
-            <VoteWrapper key={item.key}>
+            <VoteWrapper
+              key={item.key}
+              onClick={() => handleSelected(item.key)}
+              $isSelected={selectedFront === item.key}>
               <TeamNameSmall>{item.team}</TeamNameSmall>
               <TeamNameMid>{item.name}</TeamNameMid>
             </VoteWrapper>
           ))}
         </VoteItemWrappers>
         <ButtonWrapper>
-          <VoteBtn text="투표하기" />
+          <VoteBtn text="투표하기" onClick={handleSubmit} />
           <VoteBtn text="결과보기" onClick={() => navigate("/result/front")} />
         </ButtonWrapper>
       </Wrapper>
