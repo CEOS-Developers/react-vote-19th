@@ -1,9 +1,26 @@
 import VoteHeader from "@components/common/VoteHeader";
+import VoteWrapper from "@components/common/VoteWrapper";
+import VoteBtn from "@components/common/VoteBtn";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
+const DemoItems = [
+  { key: 1, name: "azito", count: 1 },
+  { key: 2, name: "BeatBuddy", count: 1 },
+  { key: 3, name: "Buldog", count: 1 },
+  { key: 4, name: "CoupleLog", count: 1 },
+  { key: 5, name: "TIG", count: 1 },
+];
 
 const Section = styled.section`
   display: flex;
   flex-direction: column;
+`;
+
+const CenterWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HeaderText = styled.h1`
@@ -15,11 +32,79 @@ const HeaderText = styled.h1`
   ${({ theme }) => theme.fonts.Headline1};
 `;
 
-export default function VoteFront() {
+const VoteWrappers = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 50.1rem;
+  flex-wrap: wrap;
+  gap: 1.9rem 4.8rem;
+  margin-bottom: 7.4rem;
+`;
+
+const TextWrapper = styled.div`
+  display: flex;
+  width: 65.7rem;
+  justify-content: space-between;
+`;
+
+const LeftTextWrapper = styled.div`
+  display: flex;
+  gap: 5.73rem;
+  align-items: center;
+`;
+
+const TeamNameMidText = styled.span`
+  ${({ theme }) => theme.fonts.TeamName_Mid};
+`;
+
+const CountText = styled.span`
+  ${({ theme }) => theme.fonts.Count};
+`;
+
+const RankBox = styled.div`
+  ${({ theme }) => theme.fonts.Rank};
+  display: inline-flex;
+  width: 5.23rem;
+  height: 5.8rem;
+  padding: 0rem 2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  border: 0.1rem solid ${({ theme }) => theme.colors.main_blue};
+  background: ${({ theme }) => theme.colors.main_blue};
+`;
+
+export default function ResultDemo() {
+  const navigate = useNavigate();
+  /* const Data = API 연결 . . 지금은 그냥 예시 */
+
   return (
     <Section>
       <VoteHeader />
-      <HeaderText>데모데이 투표 결과</HeaderText>
+      <CenterWrapper>
+        <HeaderText>BE 파트장 투표 결과</HeaderText>
+        <VoteWrappers>
+          {DemoItems.map((item) => (
+            <VoteWrapper
+              key={item.key}
+              width="77.48rem"
+              height="8.5rem"
+              $disableHover={true}
+              $disableClick={true}>
+              <TextWrapper>
+                <LeftTextWrapper>
+                  <RankBox>2</RankBox>
+                  <TeamNameMidText>{item.name}</TeamNameMidText>
+                </LeftTextWrapper>
+                <CountText>{item.count}</CountText>
+              </TextWrapper>
+            </VoteWrapper>
+          ))}
+        </VoteWrappers>
+        <VoteBtn text="돌아가기" onClick={() => navigate(-1)} />
+      </CenterWrapper>
     </Section>
   );
 }

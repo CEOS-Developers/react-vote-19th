@@ -22,6 +22,12 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
+const CenterWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const HeaderText = styled.h1`
   display: flex;
   justify-content: center;
@@ -29,12 +35,6 @@ const HeaderText = styled.h1`
   margin-bottom: 3.3rem;
 
   ${({ theme }) => theme.fonts.Headline1};
-`;
-
-const CenterWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const VoteWrappers = styled.section`
@@ -77,13 +77,14 @@ const RankBox = styled.div`
   display: inline-flex;
   height: 5.8rem;
   padding: 0rem 2rem;
+  justify-content: center;
   align-items: center;
   border-radius: 1rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.main_blue};
   background: ${({ theme }) => theme.colors.main_blue};
 `;
 
-export default function ResultFront() {
+export default function ResultBack() {
   const navigate = useNavigate();
   /* const Data = API 연결 . . 지금은 그냥 예시 */
 

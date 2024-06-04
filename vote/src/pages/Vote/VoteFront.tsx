@@ -23,6 +23,12 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
+const CenterWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const HeaderText = styled.h1`
   display: flex;
   justify-content: center;
@@ -30,12 +36,6 @@ const HeaderText = styled.h1`
   margin-bottom: 4.3rem;
 
   ${({ theme }) => theme.fonts.Headline1};
-`;
-
-const CenterWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const VoteWrappers = styled.section`
