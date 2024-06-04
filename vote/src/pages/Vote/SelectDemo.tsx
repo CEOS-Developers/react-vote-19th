@@ -17,11 +17,11 @@ const HeaderText = styled.h1`
   ${({ theme }) => theme.fonts.Headline1};
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 4.2rem;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 

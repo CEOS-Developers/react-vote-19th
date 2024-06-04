@@ -32,33 +32,31 @@ const HeaderText = styled.h1`
   ${({ theme }) => theme.fonts.Headline1};
 `;
 
-const Wrapper = styled.div`
+const CenterWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const VoteItemWrappers = styled.div`
+const VoteWrappers = styled.section`
   display: flex;
-  gap: 3.2rem 5.4rem;
-  width: 103.6rem;
-  height: 42.6rem;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 3.2rem 5.4rem;
+  flex-wrap: wrap;
   margin-bottom: 8.5rem;
 `;
 
-const TeamNameMid = styled.span`
+const TeamNameMidText = styled.span`
   ${({ theme }) => theme.fonts.TeamName_Mid};
 `;
 
-const TeamNameSmall = styled.span`
+const TeamNameSmallText = styled.span`
   ${({ theme }) => theme.fonts.TeamName_Small};
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.3rem;
 `;
 
@@ -82,24 +80,24 @@ export default function VoteFront() {
   return (
     <Section>
       <VoteHeader />
-      <HeaderText>FE 파트장 투표</HeaderText>
-      <Wrapper>
-        <VoteItemWrappers>
+      <CenterWrapper>
+        <HeaderText>FE 파트장 투표</HeaderText>
+        <VoteWrappers>
           {FrontItems.map((item) => (
             <VoteWrapper
               key={item.key}
               onClick={() => handleSelected(item.key)}
               $isSelected={selectedFront === item.key}>
-              <TeamNameSmall>{item.team}</TeamNameSmall>
-              <TeamNameMid>{item.name}</TeamNameMid>
+              <TeamNameSmallText>{item.team}</TeamNameSmallText>
+              <TeamNameMidText>{item.name}</TeamNameMidText>
             </VoteWrapper>
           ))}
-        </VoteItemWrappers>
+        </VoteWrappers>
         <ButtonWrapper>
           <VoteBtn text="투표하기" onClick={handleSubmit} />
           <VoteBtn text="결과보기" onClick={() => navigate("/result/front")} />
         </ButtonWrapper>
-      </Wrapper>
+      </CenterWrapper>
     </Section>
   );
 }

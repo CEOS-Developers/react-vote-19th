@@ -17,10 +17,18 @@ const HeaderText = styled.h1`
   ${({ theme }) => theme.fonts.Headline1};
 `;
 
-const VoteWrappers = styled.div`
+const CenterWrapper = styled.section`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const VoteWrappers = styled.section`
+  display: flex;
+  width: 94.8rem;
+  height: 45.6rem;
   gap: 10rem;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-shrink: 0;
 `;
@@ -31,25 +39,27 @@ export default function VoteMain() {
   return (
     <Section>
       <VoteHeader />
-      <HeaderText>파트장 / 데모데이 투표</HeaderText>
-      <VoteWrappers>
-        <VoteWrapper
-          onClick={() => navigate("/vote/select/part")}
-          width="39.4rem"
-          height="40.6rem">
-          파트장 투표
-          <br />
-          바로가기
-        </VoteWrapper>
-        <VoteWrapper
-          onClick={() => navigate("/vote/select/demo")}
-          width="39.4rem"
-          height="40.6rem">
-          데모데이 투표
-          <br />
-          바로가기
-        </VoteWrapper>
-      </VoteWrappers>
+      <CenterWrapper>
+        <HeaderText>파트장 / 데모데이 투표</HeaderText>
+        <VoteWrappers>
+          <VoteWrapper
+            onClick={() => navigate("/vote/select/part")}
+            width="39.4rem"
+            height="40.6rem">
+            파트장 투표
+            <br />
+            바로가기
+          </VoteWrapper>
+          <VoteWrapper
+            onClick={() => navigate("/vote/select/demo")}
+            width="39.4rem"
+            height="40.6rem">
+            데모데이 투표
+            <br />
+            바로가기
+          </VoteWrapper>
+        </VoteWrappers>
+      </CenterWrapper>
     </Section>
   );
 }

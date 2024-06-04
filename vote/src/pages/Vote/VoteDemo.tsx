@@ -27,29 +27,27 @@ const HeaderText = styled.h1`
   ${({ theme }) => theme.fonts.Headline1};
 `;
 
-const Wrapper = styled.div`
+const CenterWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const VoteItemWrappers = styled.div`
+const VoteWrappers = styled.section`
   display: flex;
-  gap: 3.3rem;
-  width: 121.8rem;
-  height: 32.3rem;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 3.3rem;
+  flex-wrap: wrap;
   margin-bottom: 8.5rem;
 `;
 
-const TeamNameMid = styled.span`
+const TeamNameMidText = styled.span`
   ${({ theme }) => theme.fonts.TeamName_Mid};
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.3rem;
 `;
 
@@ -73,9 +71,9 @@ export default function VoteDemo() {
   return (
     <Section>
       <VoteHeader />
-      <HeaderText>데모데이 투표</HeaderText>
-      <Wrapper>
-        <VoteItemWrappers>
+      <CenterWrapper>
+        <HeaderText>데모데이 투표</HeaderText>
+        <VoteWrappers>
           {DemoItems.map((item) => (
             <VoteWrapper
               key={item.key}
@@ -83,15 +81,15 @@ export default function VoteDemo() {
               height="14.5rem"
               onClick={() => handleSelected(item.key)}
               $isSelected={selectedTeam === item.key}>
-              <TeamNameMid>{item.name}</TeamNameMid>
+              <TeamNameMidText>{item.name}</TeamNameMidText>
             </VoteWrapper>
           ))}
-        </VoteItemWrappers>
+        </VoteWrappers>
         <ButtonWrapper>
           <VoteBtn text="투표하기" onClick={handleSubmit} />
           <VoteBtn text="결과보기" onClick={() => navigate("/result/demo")} />
         </ButtonWrapper>
-      </Wrapper>
+      </CenterWrapper>
     </Section>
   );
 }

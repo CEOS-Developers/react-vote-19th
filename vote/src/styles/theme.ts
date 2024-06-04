@@ -93,6 +93,16 @@ const fonts = {
     line-height: normal;
   `,
 
+  Rank: css`
+    color: #fff;
+
+    font-family: Inter;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 8rem; /* 266.667% */
+  `,
+
   Count: css`
     color: #384084;
 

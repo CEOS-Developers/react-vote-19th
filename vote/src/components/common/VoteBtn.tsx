@@ -2,11 +2,15 @@ import styled from "styled-components";
 import { BtnMid } from "@styles/BtnStyle";
 
 interface VoteBtnProps {
-  text: string;
   onClick?: () => void;
+  text: string;
 }
 
-const Button = styled(BtnMid)<{ $seeResult: boolean }>`
+const Button = styled(BtnMid)<{
+  width?: string;
+  height?: string;
+  $seeResult: boolean;
+}>`
   background-color: ${({ theme, $seeResult }) =>
     $seeResult ? theme.colors.light_blue : theme.colors.main_blue};
   color: ${({ theme }) => theme.colors.white};

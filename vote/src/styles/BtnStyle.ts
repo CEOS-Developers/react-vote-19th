@@ -22,8 +22,8 @@ export const BtnSmall = styled.button`
 export const BtnBig = styled.button`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   border-radius: 2rem;
   border: 3px solid ${({ theme }) => theme.colors.main_blue};
@@ -41,8 +41,7 @@ export const BtnBig = styled.button`
 /*투표 페이지 하단 버튼 스타일*/
 export const BtnMid = styled.button`
   align-items: center;
-  width: 29.1rem;
-  height: 8.2rem;
+  padding: 2.1rem 8.8rem;
 
   border-radius: 2rem;
   border: none;

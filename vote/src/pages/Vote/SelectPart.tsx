@@ -18,19 +18,22 @@ const HeaderText = styled.h1`
   ${({ theme }) => theme.fonts.Headline1};
 `;
 
-const VoteWrappers = styled.div`
+const CenterWrapper = styled.section`
   display: flex;
-  gap: 10rem;
-  justify-content: center;
-  align-items: flex-start;
-  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const PartWrapper = styled.div`
+const VoteWrappers = styled.section`
+  display: flex;
+  gap: 10rem;
+  justify-content: space-between;
+`;
+
+const PartWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-  justify-content: center;
   align-items: center;
 `;
 export default function VotePart() {
@@ -39,31 +42,36 @@ export default function VotePart() {
   return (
     <Section>
       <VoteHeader />
-      <HeaderText>파트장 투표</HeaderText>
-      <VoteWrappers>
-        <PartWrapper>
-          <VoteWrapper
-            onClick={() => navigate("/vote/front")}
-            width="39.4rem"
-            height="40.6rem">
-            FRONT-END
-            <br />
-            파트장 투표
-          </VoteWrapper>
-          <VoteBtn text="결과보기" onClick={() => navigate("/result/front")} />
-        </PartWrapper>
-        <PartWrapper>
-          <VoteWrapper
-            onClick={() => navigate("/vote/back")}
-            width="39.4rem"
-            height="40.6rem">
-            BACK-END
-            <br />
-            파트장 투표
-          </VoteWrapper>
-          <VoteBtn text="결과보기" onClick={() => navigate("/result/back")} />
-        </PartWrapper>
-      </VoteWrappers>
+      <CenterWrapper>
+        <HeaderText>파트장 투표</HeaderText>
+        <VoteWrappers>
+          <PartWrapper>
+            <VoteWrapper
+              onClick={() => navigate("/vote/front")}
+              width="39.4rem"
+              height="40.6rem">
+              FRONT-END
+              <br />
+              파트장 투표
+            </VoteWrapper>
+            <VoteBtn
+              text="결과보기"
+              onClick={() => navigate("/result/front")}
+            />
+          </PartWrapper>
+          <PartWrapper>
+            <VoteWrapper
+              onClick={() => navigate("/vote/back")}
+              width="39.4rem"
+              height="40.6rem">
+              BACK-END
+              <br />
+              파트장 투표
+            </VoteWrapper>
+            <VoteBtn text="결과보기" onClick={() => navigate("/result/back")} />
+          </PartWrapper>
+        </VoteWrappers>
+      </CenterWrapper>
     </Section>
   );
 }

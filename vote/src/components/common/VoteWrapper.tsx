@@ -7,12 +7,16 @@ interface VoteWrapperProps {
   width?: string;
   height?: string;
   $isSelected?: boolean;
+  $disableHover?: boolean;
+  $disableClick?: boolean;
 }
 
 const VoteButton = styled(BtnBig)<{
   width?: string;
   height?: string;
   $isSelected?: boolean;
+  $disableHover?: boolean;
+  $disableClick?: boolean;
 }>`
   width: ${({ width }) => width || "21.6rem"}; /* 파트장투표는 21.6 */
   height: ${({ height }) => height || "11.7rem"};
@@ -26,22 +30,42 @@ const VoteButton = styled(BtnBig)<{
     }
   `}
 
-  &:hover {
-    span {
-      color: ${({ theme }) => theme.colors.white};
+  ${({ $disableHover, theme }) =>
+    !$disableHover &&
+    `
+    &:hover {
+      span {
+        color: ${theme.colors.white};
+      }
     }
-  }
+  `}
+
+  ${({ $disableClick }) =>
+    $disableClick &&
+    `
+    pointer-events: none;
+  `}
 `;
 
 export default function VoteWrapper(props: VoteWrapperProps) {
-  const { onClick, children, width, height, $isSelected } = props;
+  const {
+    onClick,
+    children,
+    width,
+    height,
+    $isSelected,
+    $disableHover,
+    $disableClick,
+  } = props;
 
   return (
     <VoteButton
       onClick={onClick}
       width={width}
       height={height}
-      $isSelected={$isSelected}>
+      $isSelected={$isSelected}
+      $disableHover={$disableHover}
+      $disableClick={$disableClick}>
       {children}
     </VoteButton>
   );
