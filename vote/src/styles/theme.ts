@@ -52,7 +52,7 @@ const fonts = {
     font-size: 4rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 8rem; /* 200% */
+    line-height: 6rem; /* 200% */
   `,
 
   TeamName_Small: css`
@@ -91,6 +91,16 @@ const fonts = {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  `,
+
+  Rank: css`
+    color: #fff;
+
+    font-family: Inter;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 8rem; /* 266.667% */
   `,
 
   Count: css`
