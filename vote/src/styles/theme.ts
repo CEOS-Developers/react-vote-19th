@@ -17,9 +17,19 @@ const fonts = {
     line-height: normal;
   `,
 
+  Headline2: css`
+    color: black;
+
+    font-family: Inter;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  `,
+
   SignBtnText: css`
     font-family: Inter;
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

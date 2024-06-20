@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BtnSmall } from "@styles/BtnStyle";
-
+import { useNavigate } from "react-router-dom";
 interface SignBtnProps {
   text: string;
 }
@@ -15,9 +15,14 @@ const Button = styled(BtnSmall)<{ $isSignUp: boolean }>`
 export default function SignBtn(props: SignBtnProps) {
   const { text } = props;
   const $isSignUp = text === "회원가입";
+  const navigate = useNavigate();
+
+  function movePages() {
+    $isSignUp ? navigate("/signup") : navigate("/signin");
+  }
 
   return (
-    <Button $isSignUp={$isSignUp}>
+    <Button $isSignUp={$isSignUp} onClick={movePages}>
       <p>{text}</p>
     </Button>
   );
