@@ -1,6 +1,8 @@
 function App() {
   return (
-    <div className="App">
+    <div>
+      메인 페이지 124
+      main page 123
     </div>
   );
 }
