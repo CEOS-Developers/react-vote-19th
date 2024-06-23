@@ -55,8 +55,11 @@ function SignUpPage() {
 export default SignUpPage
 
 const SignUpContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 `
 
 const Title = styled.h2`

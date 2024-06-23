@@ -25,6 +25,9 @@ export default LoginPage
 const LoginContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 `
 const Title = styled.h2`
     margin-bottom: 1.5rem;
