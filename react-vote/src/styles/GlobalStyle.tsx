@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 import reset from "styled-reset";
+import backgroundImage from "../assets/banner-graphic-ceos.png"
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -17,12 +18,12 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Open Sans', sans-serif;
         width:100%;
         height: 100vh;
-        margin: 0 auto; 
+        margin: 0 auto;
         background-color: ${({theme}) => theme.colors.main};
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        background-color: ${({ theme }) => theme.colors.main};
+        background-image: url(${backgroundImage});
+        background-size: cover; /* 이미지를 화면에 꽉 채우도록 설정 */
+        background-position: center; /* 이미지를 가운데 정렬 */
     }
 
     body *:lang(ko) {
@@ -41,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
 
     h2{
         font-size: 3rem;
-        font-weight: 550;
+        font-weight: 530;
         color: white
     }
 `;

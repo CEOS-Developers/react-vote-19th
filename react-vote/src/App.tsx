@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import styled from "styled-components";
+import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import VoteMain from "./pages/VoteMain";
@@ -9,8 +11,9 @@ import MemberVoteResultPage from "./pages/MemberVoteResultPage";
 
 function App() {
   return (
-    <div>
+    <AppContainer>
       <BrowserRouter>
+        <Header />
           <Routes>
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/signup" element={<SignUpPage/>} />
@@ -21,8 +24,16 @@ function App() {
             <Route path="/memberresult" element={<MemberVoteResultPage />} />
           </Routes>
         </BrowserRouter>
-    </div>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`

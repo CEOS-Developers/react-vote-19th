@@ -3,6 +3,7 @@ const colors = {
     gray: "#555555",
     black: "#000000",
     main : "#3e4cf7",
+    green : "#03d1a8"
   };
 
   const theme = {
