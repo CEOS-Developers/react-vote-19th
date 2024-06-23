@@ -18,6 +18,9 @@ export const GlobalStyle = createGlobalStyle`
         width:100%;
         height: 100vh;
         margin: 0 auto; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     body *:lang(ko) {
