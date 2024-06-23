@@ -18,9 +18,11 @@ export const GlobalStyle = createGlobalStyle`
         width:100%;
         height: 100vh;
         margin: 0 auto; 
+        background-color: ${({theme}) => theme.colors.main};
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
     body *:lang(ko) {
@@ -35,6 +37,12 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         &:hover {
             }
+    }
+
+    h2{
+        font-size: 3rem;
+        font-weight: 550;
+        color: white
     }
 `;
 

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface DropdownProps {
+  listsName : string
   lists: string[];
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ lists }) => {
+export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
@@ -19,9 +20,9 @@ export const Dropdown: React.FC<DropdownProps> = ({ lists }) => {
   };
 
   return (
-    <>
+    <DropdownContainer>
       <DropdownBtnContainer onClick={toggleLists}>
-        <span>{selectedItem || 'Dropdown'}</span>
+        <span>{selectedItem || listsName}</span>
       </DropdownBtnContainer>
       {isOpen && (
         <ListWrapper>
@@ -32,19 +33,39 @@ export const Dropdown: React.FC<DropdownProps> = ({ lists }) => {
           ))}
         </ListWrapper>
       )}
-    </>
+    </DropdownContainer>
   );
 };
 
+const DropdownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 const DropdownBtnContainer = styled.div`
-  cursor: pointer;
- 
+    cursor: pointer;
+    border: 0.1rem solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: beige;
+    width: 10rem;
+    height: 3rem;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
 `;
 
 const ListWrapper = styled.ul`
-  
+    border: 0.1rem solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: beige;
+    width: 10rem;
 `;
 
 const ListItem = styled.li`
-  cursor: pointer;
-`;
+    cursor: pointer;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    `;
