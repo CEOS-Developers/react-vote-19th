@@ -2,6 +2,8 @@ import styled from "styled-components";
 import InputContainer from "@components/common/InputContainer";
 import { useState } from "react";
 import { BtnSign } from "@styles/BtnStyle";
+import { usePostSignIn } from "@hooks/usePostSingIn";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,9 +36,9 @@ const FilledInput = styled.section`
   gap: 2.25rem;
 `;
 
-const Container = styled.section`
+const BtnContainer = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const SignInBtn = styled(BtnSign)`
@@ -47,6 +49,16 @@ const SignInBtn = styled(BtnSign)`
 export default function SignIn() {
   const [ID, setId] = useState("");
   const [PW, setPw] = useState("");
+  const { mutate: postSignInMutate } = usePostSignIn();
+  const navigate = useNavigate();
+
+  function handleSignIn() {
+    postSignInMutate({ username: ID, password: PW });
+  }
+
+  function moveToSignUp() {
+    navigate("/signup");
+  }
 
   return (
     <Wrapper>
@@ -56,9 +68,10 @@ export default function SignIn() {
           <InputContainer name="ID" state={ID} setState={setId} />
           <InputContainer name="PASSWORD" state={PW} setState={setPw} />
         </FilledInput>
-        <Container>
-          <SignInBtn>로그인</SignInBtn>
-        </Container>
+        <BtnContainer>
+          <SignInBtn onClick={handleSignIn}>로그인</SignInBtn>
+          <SignInBtn onClick={moveToSignUp}>회원가입</SignInBtn>
+        </BtnContainer>
       </Section>
     </Wrapper>
   );
