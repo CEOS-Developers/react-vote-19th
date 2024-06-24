@@ -1,12 +1,12 @@
 import axiosInstance from './index';
 
 // 데이터 인터페이스 정의
-interface LoginData {
+export interface LoginData {
   userID: string;
   password: string;
 }
 
-interface JoinData {
+export interface JoinData {
   name: string;
   username: string;
   password: string;
@@ -38,6 +38,8 @@ export const authAPI = {
 export const userAPI = {
   join: async (data: JoinData) => {
     return await axiosInstance.post('/api/v1/join', data);
+    
+
   },
   getUserInfo: async () => {
     return await axiosInstance.get('/api/v1/users');

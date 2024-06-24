@@ -5,12 +5,15 @@ import { Dropdown } from "../components/Dropdown"
 import React, { useState } from 'react';
 import { userAPI } from '../api/request';
 import { useNavigate } from 'react-router-dom';
+import { useSignUp } from '../hooks/useSignUp';
+
 
 function SignUpPage() {
   const teamLists = ["Azito", "BeatBuddy", "Buldog", "Couplelog", "TIG"];
   const roleLists = ["LEADER", "GENERAL"];
   const partLists = ["FRONT", "BACK"];
 
+  const { join, isPending, isSuccess, error } = useSignUp();
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -22,19 +25,9 @@ function SignUpPage() {
   const [part, setPart] = useState('');
 
   const handleSignup = async () => {
-    try {
-      const data = { name, username, password, email, team, role, part };
-      console.log(data);
-      await userAPI.join(data);
-      alert('회원가입 성공!');
-       navigate(`/login`);// 로그인 페이지로 리디렉션
-    } catch (error: any) {
-      if (error.response) {
-        alert('회원가입 실패: ' + error.response.data.message);
-      } else {
-        alert('회원가입 실패: ' + error.message);
-      }
-    }
+    const data = { name, username, password, email, team, role, part };
+    console.log(data)
+    join(data);
   };
 
   return (
@@ -90,8 +83,10 @@ function SignUpPage() {
           onChange={(selectedRole: string) => setRole(selectedRole)}
         />
       </DropdownWrapper>
-      <EnrollBtn onClick={handleSignup}>가입하기</EnrollBtn>
-    </SignUpInfoWrapper>
+      <EnrollBtn onClick={handleSignup}>
+          {isPending ? '가입 중...' : '가입하기'}
+        </EnrollBtn>
+          </SignUpInfoWrapper>
   </SignUpContainer>
 );
 }
@@ -162,4 +157,6 @@ const EnrollBtn = styled.div`
   align-items: center;
   justify-content: center; 
   margin-bottom: 1rem;
+  
+ 
 `
