@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import { BtnSign } from "@styles/BtnStyle";
 import InputContainer from "@components/common/InputContainer";
+import { usePostSignUp } from "@hooks/usePostSignUp";
+import { usePostEmail } from "@hooks/usePostEmail";
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,6 +35,20 @@ const FilledInput = styled.section`
 const VerifyBtn = styled(BtnSign)`
   width: 100%;
   height: 3.625rem;
+`;
+
+const ConfirmText = styled.p<{ $passwordMatch: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 3.625rem;
+
+  background-color: ${({ $passwordMatch, theme }) =>
+    $passwordMatch ? theme.colors.active : theme.colors.confirm};
+  color: ${({ theme }) => theme.colors.black};
+  ${({ theme }) => theme.fonts.SignBtnText};
 `;
 
 const Toggle = styled.section`
@@ -75,8 +91,8 @@ const SignUpBtn = styled(BtnSign)`
 `;
 
 const options = {
-  teams: ["Team A", "Team B", "Team C"],
-  parts: ["Part 1", "Part 2", "Part 3"],
+  teams: ["AZITO", "TIG", "커플로그", "펫플레이트", "비트버디"],
+  parts: ["BACKEND", "FRONTEND"],
 };
 
 export default function SignUp() {
@@ -85,8 +101,33 @@ export default function SignUp() {
   const [PW, setPw] = useState("");
   const [pwCheck, setPwCheck] = useState("");
   const [email, setEmail] = useState("");
+  const [emailCheck, setEmailCheck] = useState("");
   const [selectedTeam, setSelectedTeam] = useState("");
   const [selectedPart, setSelectedPart] = useState("");
+  const [isEmailClicked, setIsEmailClicked] = useState(false);
+
+  const { mutate: postSignUpMutate } = usePostSignUp();
+  const { mutate: postEmailMutate } = usePostEmail();
+
+  const passwordMatch = PW !== "" && PW === pwCheck;
+
+  function handleEmail() {
+    postEmailMutate({ email: email });
+    setIsEmailClicked(true);
+  }
+
+  function handleSignUp() {
+    postSignUpMutate({
+      username: ID,
+      password: PW,
+      email: email,
+      part: selectedPart,
+      team: selectedTeam,
+      name: name,
+    });
+  }
+
+  function handleEmailCheck() {}
 
   return (
     <Wrapper>
@@ -96,24 +137,51 @@ export default function SignUp() {
           <InputContainer name="Name" state={name} setState={setName} />
           <InputContainer name="ID" state={ID} setState={setId} />
           <InputContainer name="PASSWORD" state={PW} setState={setPw} />
-          <InputContainer
-            name="CONFIRM PASSWORD"
-            state={pwCheck}
-            setState={setPwCheck}
-          />
           <InputContainer custom={true}>
-            <label htmlFor="email">EMAIL</label>
+            <label>CONFIRM PASSWORD</label>
+            <div>
+              <input
+                type="text"
+                id="pwCheck"
+                placeholder="CONFIRM PASSWORD"
+                value={pwCheck}
+                onChange={(e) => setPwCheck(e.target.value)}
+              />
+              <ConfirmText $passwordMatch={passwordMatch}>PW 확인</ConfirmText>
+            </div>
+          </InputContainer>
+          <InputContainer custom={true}>
+            <label>EMAIL</label>
             <div>
               <input
                 type="email"
-                id="email"
+                id={email}
                 placeholder="EMAIL"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <VerifyBtn type="button">인증</VerifyBtn>
+              <VerifyBtn type="button" onClick={handleEmail}>
+                이메일 인증
+              </VerifyBtn>
             </div>
           </InputContainer>
+          {isEmailClicked && (
+            <InputContainer custom={true}>
+              <label>VERIFY EMAIL</label>
+              <div>
+                <input
+                  type="text"
+                  id="emailCheck"
+                  placeholder="이메일 인증코드"
+                  value={emailCheck}
+                  onChange={(e) => setEmailCheck(e.target.value)}
+                />
+                <VerifyBtn type="button" onClick={handleEmailCheck}>
+                  인증코드 확인
+                </VerifyBtn>
+              </div>
+            </InputContainer>
+          )}
         </FilledInput>
         <Toggle>
           <Title>팀 명 / 파트</Title>
@@ -145,7 +213,12 @@ export default function SignUp() {
           </ToggleContainer>
         </Toggle>
         <BtnContainer>
-          <SignUpBtn>가입하기</SignUpBtn>
+          <SignUpBtn
+            type="button"
+            disabled={!passwordMatch}
+            onClick={handleSignUp}>
+            가입하기
+          </SignUpBtn>
         </BtnContainer>
       </Section>
     </Wrapper>

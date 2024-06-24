@@ -4,6 +4,9 @@ const colors = {
   main_blue: "#384084",
   white: "#fff",
   light_blue: "rgba(56, 64, 132, 0.50)",
+  confirm: "#5A6072",
+  black: "#000000",
+  active: "#FFD702",
 };
 
 const fonts = {
