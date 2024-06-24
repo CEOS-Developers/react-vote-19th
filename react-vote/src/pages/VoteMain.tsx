@@ -64,6 +64,12 @@ const PartBtn = styled.div`
   background-origin: border-box;
   background-clip: border-box, content-box;
   backdrop-filter: blur(30px);
+
+  &:hover {
+      color: ${({theme})=>theme.colors.green}
+  }
+
+  cursor: pointer;
 `
 
 const DemoDayBtn = styled.div`
@@ -87,4 +93,10 @@ const DemoDayBtn = styled.div`
   background-origin: border-box;
   background-clip: border-box, content-box;
   backdrop-filter: blur(30px);
+
+    &:hover {
+        color: ${({theme})=>theme.colors.green}
+    }
+
+    cursor: pointer;
   `
