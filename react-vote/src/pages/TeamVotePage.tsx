@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import TeamLists from "../components/TeamLists"
-import { useState } from "react";
 
 interface ReadTeamResponse {
   teamId: number; // 정수형으로 사용
