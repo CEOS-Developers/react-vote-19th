@@ -1,7 +1,7 @@
+import React, { useState } from 'react';
+
 function VoteMain() {
-  return (
-    <div>VoteMain</div>
-  )
+	return <div></div>;
 }
 
-export default VoteMain
+export default VoteMain;

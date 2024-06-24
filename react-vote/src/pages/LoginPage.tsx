@@ -6,13 +6,13 @@ function LoginPage() {
   <LoginContainer>
         <Title>Login</Title>
         <LoginInfoWrapper>
-          <InputBoxWrapper>
+          <InputBoxWrapper>{/*
             <InputBox
               placeholder = "아이디"
             />
             <InputBox
               placeholder = "비밀번호"
-            />
+            />*/}
           </InputBoxWrapper>
           <LoginBtn>가입하기</LoginBtn>
         </LoginInfoWrapper>

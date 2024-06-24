@@ -4,9 +4,12 @@ import styled from 'styled-components';
 interface DropdownProps {
   listsName : string
   lists: string[];
+  onChange: (selectedItem: string) => void; // onChange 새로 추가
+
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists }) => {
+
+export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
@@ -17,6 +20,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists }) => {
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
     setIsOpen(false);
+    onChange(item); // 선택된 값을 부모 컴포넌트로 전달
   };
 
   return (
@@ -36,6 +40,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists }) => {
     </DropdownContainer>
   );
 };
+
 
 const DropdownContainer = styled.div`
     display: flex;
