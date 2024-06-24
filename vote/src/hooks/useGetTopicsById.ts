@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
-import { getTopicById } from "@api/getTopicById";
-import { ResponseTypes } from "@api/getTopicById";
+import { getTopicsById } from "@api/getTopicsById";
+import { ResponseTypes } from "@api/getTopicsById";
 
-export default function useGetTopicById(topicID: number) {
+export function useGetTopicsById(topicID: number) {
   const result = useQuery<ResponseTypes, Error>(
-    ["getTopicById", topicID],
-    () => getTopicById(topicID),
+    ["getTopicsById", topicID],
+    () => getTopicsById(topicID),
     {
       onError: (error) => {
         console.log("해당 Topic이 존재하지 않습니다.", error);

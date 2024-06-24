@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getVotingOptionsByTopicId } from "@api/getVotingOptionsByTopicId";
 import { ResponseTypes } from "@api/getVotingOptionsByTopicId";
 
-export default function useGetVotingOptionsByTopicId(topicID: number) {
+export function useGetVotingOptionsByTopicId(topicID: number) {
   const result = useQuery<ResponseTypes, Error>(
     ["getVotingOptionsByTopicId", topicID],
     () => getVotingOptionsByTopicId(topicID),

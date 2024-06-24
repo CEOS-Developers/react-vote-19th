@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getFinalResult } from "@api/getFinalResult";
 import { ResponseTypes } from "@api/getFinalResult";
 
-export default function useGetFinalResult(topicID: number) {
+export function useGetFinalResult(topicID: number) {
   const result = useQuery<ResponseTypes, Error>(
     ["getFinalResult", topicID],
     () => getFinalResult(topicID),

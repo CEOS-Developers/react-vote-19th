@@ -4,14 +4,7 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const DemoItems = [
-  { key: 1, name: "azito" },
-  { key: 2, name: "BeatBuddy" },
-  { key: 3, name: "Buldog" },
-  { key: 4, name: "CoupleLog" },
-  { key: 5, name: "TIG" },
-];
+import { useGetTopicsById } from "@hooks/useGetTopicsById";
 
 const Section = styled.section`
   display: flex;
@@ -54,6 +47,7 @@ const ButtonWrapper = styled.section`
 export default function VoteDemo() {
   const navigate = useNavigate();
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const { data } = useGetTopicsById(3);
 
   const handleSelected = (itemKey: any) => {
     if (selectedTeam === itemKey) {
@@ -68,28 +62,30 @@ export default function VoteDemo() {
     /* API 연결 */
   };
 
-  return (
-    <Section>
-      <VoteHeader />
-      <CenterWrapper>
-        <HeaderText>데모데이 투표</HeaderText>
-        <VoteWrappers>
-          {DemoItems.map((item) => (
-            <VoteWrapper
-              key={item.key}
-              width="38rem"
-              height="14.5rem"
-              onClick={() => handleSelected(item.key)}
-              $isSelected={selectedTeam === item.key}>
-              <TeamNameMidText>{item.name}</TeamNameMidText>
-            </VoteWrapper>
-          ))}
-        </VoteWrappers>
-        <ButtonWrapper>
-          <VoteBtn text="투표하기" onClick={handleSubmit} />
-          <VoteBtn text="결과보기" onClick={() => navigate("/result/demo")} />
-        </ButtonWrapper>
-      </CenterWrapper>
-    </Section>
-  );
+  if (data && data.votingOptionDto) {
+    return (
+      <Section>
+        <VoteHeader />
+        <CenterWrapper>
+          <HeaderText>데모데이 투표</HeaderText>
+          <VoteWrappers>
+            {data.votingOptionDto.map((item) => (
+              <VoteWrapper
+                key={item.id}
+                width="38rem"
+                height="14.5rem"
+                onClick={() => handleSelected(item.id)}
+                $isSelected={selectedTeam === item.id}>
+                <TeamNameMidText>{item.name}</TeamNameMidText>
+              </VoteWrapper>
+            ))}
+          </VoteWrappers>
+          <ButtonWrapper>
+            <VoteBtn text="투표하기" onClick={handleSubmit} />
+            <VoteBtn text="결과보기" onClick={() => navigate("/result/demo")} />
+          </ButtonWrapper>
+        </CenterWrapper>
+      </Section>
+    );
+  }
 }

@@ -13,13 +13,13 @@ export interface ResponseTypes {
   votingOptionDto: VotingOptionDtoTypes[];
 }
 
-interface GetTopicByIdTypes {
+interface GetTopicsByIdTypes {
   success: boolean;
   response: ResponseTypes;
 }
 
-export async function getTopicById(topicID: number): Promise<ResponseTypes> {
-  const { data }: AxiosResponse<GetTopicByIdTypes> = await customAxios.get(
+export async function getTopicsById(topicID: number): Promise<ResponseTypes> {
+  const { data }: AxiosResponse<GetTopicsByIdTypes> = await customAxios.get(
     `/api/topics/${topicID}`,
   );
 
