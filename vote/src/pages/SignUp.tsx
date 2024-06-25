@@ -19,9 +19,7 @@ const Header = styled.h1`
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-
   padding: 6rem 4rem 2rem;
-
   border-radius: 1.25rem;
   background-color: ${({ theme }) => theme.colors.light_blue};
 `;
@@ -41,10 +39,8 @@ const ConfirmText = styled.p<{ $passwordMatch: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 100%;
   height: 3.625rem;
-
   background-color: ${({ $passwordMatch, theme }) =>
     $passwordMatch ? theme.colors.active : theme.colors.confirm};
   color: ${({ theme }) => theme.colors.black};
@@ -54,7 +50,6 @@ const ConfirmText = styled.p<{ $passwordMatch: boolean }>`
 const Toggle = styled.section`
   display: flex;
   flex-direction: column;
-
   gap: 1.5rem;
   margin-top: 7.4rem;
 `;
@@ -68,26 +63,32 @@ const ToggleContainer = styled.section`
   justify-content: space-around;
 `;
 
-const Dropdown = styled.select`
+const Dropdown = styled.select<{ $selected: boolean }>`
   width: 16.625rem;
   height: 5rem;
-
   padding: 0.5rem;
   ${({ theme }) => theme.fonts.SignBtnText};
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.main_blue};
+  color: ${({ $selected, theme }) =>
+    $selected ? theme.colors.black : theme.colors.white};
+  background-color: ${({ $selected, theme }) =>
+    $selected ? theme.colors.active : theme.colors.main_blue};
 `;
 
 const BtnContainer = styled.section`
   display: flex;
   justify-content: center;
-
   margin-top: 5rem;
 `;
 
-const SignUpBtn = styled(BtnSign)`
+const SignUpBtn = styled(BtnSign)<{ $disabled: boolean }>`
   width: 12.625rem;
   height: 3.625rem;
+
+  cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "pointer")};
+  background-color: ${({ $disabled, theme }) =>
+    $disabled ? theme.colors.confirm : theme.colors.main_blue};
+  color: ${({ $disabled, theme }) =>
+    $disabled ? theme.colors.black : theme.colors.white};
 `;
 
 const options = {
@@ -105,15 +106,33 @@ export default function SignUp() {
   const [selectedTeam, setSelectedTeam] = useState("");
   const [selectedPart, setSelectedPart] = useState("");
   const [isEmailClicked, setIsEmailClicked] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
 
   const { mutate: postSignUpMutate } = usePostSignUp();
   const { mutate: postEmailMutate } = usePostEmail();
 
   const passwordMatch = PW !== "" && PW === pwCheck;
 
+  const isSignUpDisabled =
+    !passwordMatch ||
+    ID === "" ||
+    PW === "" ||
+    name === "" ||
+    email === "" ||
+    // emailCheck === "" ||
+    selectedPart === "" ||
+    selectedTeam === "";
+
   function handleEmail() {
-    postEmailMutate({ email: email });
-    setIsEmailClicked(true);
+    postEmailMutate(
+      { email: email },
+      {
+        onSuccess: (data) => {
+          setIsEmailClicked(true);
+          setVerificationCode(data.data);
+        },
+      },
+    );
   }
 
   function handleSignUp() {
@@ -123,11 +142,18 @@ export default function SignUp() {
       email: email,
       part: selectedPart,
       team: selectedTeam,
+      role: true,
       name: name,
     });
   }
 
-  function handleEmailCheck() {}
+  function handleEmailCheck() {
+    if (emailCheck === verificationCode) {
+      alert("코드 일치");
+    } else {
+      alert("코드 불일치");
+    }
+  }
 
   return (
     <Wrapper>
@@ -151,10 +177,10 @@ export default function SignUp() {
             </div>
           </InputContainer>
           <InputContainer custom={true}>
-            <label>EMAIL</label>
+            <label htmlFor={email}>EMAIL</label>
             <div>
               <input
-                type="email"
+                type="text"
                 id={email}
                 placeholder="EMAIL"
                 value={email}
@@ -188,6 +214,7 @@ export default function SignUp() {
           <ToggleContainer>
             <Dropdown
               value={selectedTeam}
+              $selected={!!selectedTeam}
               onChange={(e) => setSelectedTeam(e.target.value)}>
               <option value="" disabled>
                 팀 선택
@@ -200,6 +227,7 @@ export default function SignUp() {
             </Dropdown>
             <Dropdown
               value={selectedPart}
+              $selected={!!selectedPart}
               onChange={(e) => setSelectedPart(e.target.value)}>
               <option value="" disabled>
                 파트 선택
@@ -215,7 +243,8 @@ export default function SignUp() {
         <BtnContainer>
           <SignUpBtn
             type="button"
-            disabled={!passwordMatch}
+            disabled={isSignUpDisabled}
+            $disabled={isSignUpDisabled}
             onClick={handleSignUp}>
             가입하기
           </SignUpBtn>
