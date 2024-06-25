@@ -4,5 +4,6 @@ export interface postSignUpTypes {
   email: string;
   part: string;
   team: string;
+  role: boolean;
   name: string;
 }

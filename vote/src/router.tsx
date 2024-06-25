@@ -21,7 +21,7 @@ export const Router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <VoteMain /> },
+      { index: true, element: <SignIn /> },
       { path: "/signin", element: <SignIn /> },
       { path: "/signup", element: <Signup /> },
       {
