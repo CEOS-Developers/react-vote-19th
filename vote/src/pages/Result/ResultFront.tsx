@@ -73,13 +73,18 @@ export default function ResultFront() {
   const { data } = useGetFinalResult(1);
 
   if (data) {
+    // votingOptionCount 기준으로 data를 내림차순 정렬
+    const sortedData = [...data].sort(
+      (a, b) => b.votingOptionCount - a.votingOptionCount,
+    );
+
     return (
       <Section>
         <VoteHeader />
         <CenterWrapper>
           <HeaderText>FE 파트장 투표 결과</HeaderText>
           <VoteWrappers>
-            {data.map((item) => (
+            {sortedData.map((item, index) => (
               <VoteWrapper
                 key={item.votingOptionId}
                 width="49.2rem"
@@ -88,7 +93,7 @@ export default function ResultFront() {
                 $disableClick={true}>
                 <TextWrapper>
                   <LeftTextWrapper>
-                    <RankBox>2</RankBox>
+                    <RankBox>{index + 1}</RankBox>
                     <TeamNameMidText>{item.votingOptionName}</TeamNameMidText>
                   </LeftTextWrapper>
                   <CountText>{item.votingOptionCount}</CountText>
