@@ -4,7 +4,8 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useGetTopicsById } from "@hooks/useGetTopicsById";
+import { useGetVotingOptionsByTopicId } from "@hooks/useGetVotingOptionsByTopicId";
+import { usePostVote } from "@hooks/usePostVote";
 
 const Section = styled.section`
   display: flex;
@@ -47,7 +48,8 @@ const ButtonWrapper = styled.section`
 export default function VoteDemo() {
   const navigate = useNavigate();
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const { data } = useGetTopicsById(3);
+  const { data } = useGetVotingOptionsByTopicId(3);
+  const { mutate: postVoteMutate } = usePostVote();
 
   const handleSelected = (itemKey: any) => {
     if (selectedTeam === itemKey) {
@@ -59,17 +61,24 @@ export default function VoteDemo() {
 
   const handleSubmit = () => {
     console.log("선택된 항목:", selectedTeam);
-    /* API 연결 */
+    if (selectedTeam !== null) {
+      postVoteMutate({
+        topicId: 3,
+        votingOptionId: selectedTeam,
+      });
+    } else {
+      console.error("선택된 항목이 없습니다.");
+    }
   };
 
-  if (data && data.votingOptionDto) {
+  if (data) {
     return (
       <Section>
         <VoteHeader />
         <CenterWrapper>
           <HeaderText>데모데이 투표</HeaderText>
           <VoteWrappers>
-            {data.votingOptionDto.map((item) => (
+            {data.map((item) => (
               <VoteWrapper
                 key={item.id}
                 width="38rem"

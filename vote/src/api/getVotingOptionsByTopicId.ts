@@ -9,12 +9,12 @@ export interface ResponseTypes {
 
 interface GetVotingOptionsByTopicIdTypes {
   success: boolean;
-  response: ResponseTypes;
+  response: ResponseTypes[];
 }
 
 export async function getVotingOptionsByTopicId(
   topicID: number,
-): Promise<ResponseTypes> {
+): Promise<ResponseTypes[]> {
   const { data }: AxiosResponse<GetVotingOptionsByTopicIdTypes> =
     await customAxios.get(`/api/votingoptions/topics/${topicID}`);
 

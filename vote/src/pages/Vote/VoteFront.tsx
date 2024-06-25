@@ -4,9 +4,8 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useGetTopicsById } from "@hooks/useGetTopicsById";
-
-//const { data } = useGetMyPageComment();
+import { useGetVotingOptionsByTopicId } from "@hooks/useGetVotingOptionsByTopicId";
+import { usePostVote } from "@hooks/usePostVote";
 
 const Section = styled.section`
   display: flex;
@@ -49,7 +48,8 @@ const ButtonWrapper = styled.section`
 export default function VoteFront() {
   const navigate = useNavigate();
   const [selectedFront, setSelectedFront] = useState(null);
-  const { data } = useGetTopicsById(1);
+  const { data } = useGetVotingOptionsByTopicId(1);
+  const { mutate: postVoteMutate } = usePostVote();
 
   const handleSelected = (itemKey: any) => {
     if (selectedFront === itemKey) {
@@ -61,17 +61,24 @@ export default function VoteFront() {
 
   const handleSubmit = () => {
     console.log("선택된 항목:", selectedFront);
-    /* API 연결 */
+    if (selectedFront !== null) {
+      postVoteMutate({
+        topicId: 1,
+        votingOptionId: selectedFront,
+      });
+    } else {
+      console.error("선택된 항목이 없습니다.");
+    }
   };
 
-  if (data && data.votingOptionDto) {
+  if (data) {
     return (
       <Section>
         <VoteHeader />
         <CenterWrapper>
           <HeaderText>FE 파트장 투표</HeaderText>
           <VoteWrappers>
-            {data.votingOptionDto.map((item) => (
+            {data.map((item: any) => (
               <VoteWrapper
                 key={item.id}
                 onClick={() => handleSelected(item.id)}

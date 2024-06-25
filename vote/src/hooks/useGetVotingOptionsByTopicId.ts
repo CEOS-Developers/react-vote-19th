@@ -3,7 +3,7 @@ import { getVotingOptionsByTopicId } from "@api/getVotingOptionsByTopicId";
 import { ResponseTypes } from "@api/getVotingOptionsByTopicId";
 
 export function useGetVotingOptionsByTopicId(topicID: number) {
-  const result = useQuery<ResponseTypes, Error>(
+  const result = useQuery<ResponseTypes[], Error>(
     ["getVotingOptionsByTopicId", topicID],
     () => getVotingOptionsByTopicId(topicID),
     {
