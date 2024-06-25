@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { authAPI, LoginData } from '../api/request';
+import { authAPI, userAPI, LoginData } from '../api/request';
 import { useNavigate } from 'react-router-dom';
 
 export const useLoginMutation = () => {
@@ -23,6 +23,15 @@ export const useLoginMutation = () => {
 				const refreshToken = res.headers.refreshtoken;
 				localStorage.setItem('refreshToken', refreshToken);
 
+				// 로그인 후 유저 정보 가져오기
+				const userInfoResponse = await userAPI.getUserInfo(accessToken);
+				console.log('User Info:', userInfoResponse.data.value);
+
+				// 유저 정보 저장 
+				localStorage.setItem(
+					'userInfo',
+					JSON.stringify(userInfoResponse.data.value)
+				);
 			} else if (res.status === 400) {
 				alert('잘못된 아이디/비밀번호입니다.');
 			}
