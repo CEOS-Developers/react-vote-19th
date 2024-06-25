@@ -3,14 +3,7 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const DemoItems = [
-  { key: 1, name: "azito", count: 1 },
-  { key: 2, name: "BeatBuddy", count: 1 },
-  { key: 3, name: "Buldog", count: 1 },
-  { key: 4, name: "CoupleLog", count: 1 },
-  { key: 5, name: "TIG", count: 1 },
-];
+import { useGetFinalResult } from "@hooks/useGetFinalResult";
 
 const Section = styled.section`
   display: flex;
@@ -78,33 +71,35 @@ const RankBox = styled.div`
 
 export default function ResultDemo() {
   const navigate = useNavigate();
-  /* const Data = API 연결 . . 지금은 그냥 예시 */
+  const { data } = useGetFinalResult(3);
 
-  return (
-    <Section>
-      <VoteHeader />
-      <CenterWrapper>
-        <HeaderText>BE 파트장 투표 결과</HeaderText>
-        <VoteWrappers>
-          {DemoItems.map((item) => (
-            <VoteWrapper
-              key={item.key}
-              width="77.48rem"
-              height="8.5rem"
-              $disableHover={true}
-              $disableClick={true}>
-              <TextWrapper>
-                <LeftTextWrapper>
-                  <RankBox>2</RankBox>
-                  <TeamNameMidText>{item.name}</TeamNameMidText>
-                </LeftTextWrapper>
-                <CountText>{item.count}</CountText>
-              </TextWrapper>
-            </VoteWrapper>
-          ))}
-        </VoteWrappers>
-        <VoteBtn text="돌아가기" onClick={() => navigate(-1)} />
-      </CenterWrapper>
-    </Section>
-  );
+  if (data) {
+    return (
+      <Section>
+        <VoteHeader />
+        <CenterWrapper>
+          <HeaderText>BE 파트장 투표 결과</HeaderText>
+          <VoteWrappers>
+            {data.map((item) => (
+              <VoteWrapper
+                key={item.votingOptionId}
+                width="77.48rem"
+                height="8.5rem"
+                $disableHover={true}
+                $disableClick={true}>
+                <TextWrapper>
+                  <LeftTextWrapper>
+                    <RankBox>2</RankBox>
+                    <TeamNameMidText>{item.votingOptionName}</TeamNameMidText>
+                  </LeftTextWrapper>
+                  <CountText>{item.votingOptionCount}</CountText>
+                </TextWrapper>
+              </VoteWrapper>
+            ))}
+          </VoteWrappers>
+          <VoteBtn text="돌아가기" onClick={() => navigate(-1)} />
+        </CenterWrapper>
+      </Section>
+    );
+  }
 }

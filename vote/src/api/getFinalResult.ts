@@ -9,10 +9,12 @@ export interface ResponseTypes {
 
 interface GetFinalResultTypes {
   success: boolean;
-  response: ResponseTypes;
+  response: ResponseTypes[];
 }
 
-export async function getFinalResult(topicID: number): Promise<ResponseTypes> {
+export async function getFinalResult(
+  topicID: number,
+): Promise<ResponseTypes[]> {
   const { data }: AxiosResponse<GetFinalResultTypes> = await customAxios.get(
     `/api/topics/${topicID}/results`,
   );

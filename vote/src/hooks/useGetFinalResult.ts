@@ -3,7 +3,7 @@ import { getFinalResult } from "@api/getFinalResult";
 import { ResponseTypes } from "@api/getFinalResult";
 
 export function useGetFinalResult(topicID: number) {
-  const result = useQuery<ResponseTypes, Error>(
+  const result = useQuery<ResponseTypes[], Error>(
     ["getFinalResult", topicID],
     () => getFinalResult(topicID),
     {

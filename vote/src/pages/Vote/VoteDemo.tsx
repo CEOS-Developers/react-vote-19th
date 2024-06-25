@@ -60,7 +60,6 @@ export default function VoteDemo() {
   };
 
   const handleSubmit = () => {
-    console.log("선택된 항목:", selectedTeam);
     if (selectedTeam !== null) {
       postVoteMutate({
         topicId: 3,

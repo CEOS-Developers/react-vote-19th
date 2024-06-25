@@ -60,7 +60,6 @@ export default function VoteBack() {
   };
 
   const handleSubmit = () => {
-    console.log("선택된 항목:", selectedBack);
     if (selectedBack !== null) {
       postVoteMutate({
         topicId: 2,
