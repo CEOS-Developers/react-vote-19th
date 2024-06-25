@@ -8,5 +8,5 @@ export async function postVote(props: postVoteTypes) {
     votingOptionId: votingOptionId,
   });
 
-  return response;
+  return response?.data.data;
 }
