@@ -6,7 +6,7 @@ const BASE_URL = 'http://testeveytime.shop/';
 const axiosInstance = axios.create({
 	baseURL: BASE_URL,
 });
-
+/*
 axiosInstance.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
 		if (!config.url?.includes('/join') && !config.url?.includes('/login')) {
@@ -39,5 +39,5 @@ axiosInstance.interceptors.response.use(
 		return Promise.reject(error.response);
 	}
 );
-
+*/
 export default axiosInstance;
