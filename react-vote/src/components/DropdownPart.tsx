@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-interface DropdownProps {
+interface DropdownPartProps {
   listsName : string
   lists: string[];
-  onChange: (selectedItem: string) => void; // onChange 새로 추가
-
+  onChange: (selectedItem: string) => void;
 }
 
-
-export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists, onChange }) => {
+export const DropdownPart: React.FC<DropdownPartProps> = ({ listsName, lists, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
@@ -19,8 +17,8 @@ export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists, onChange }
 
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
+    onChange(item);
     setIsOpen(false);
-    onChange(item); // 선택된 값을 부모 컴포넌트로 전달
   };
 
   return (
@@ -41,7 +39,6 @@ export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists, onChange }
   );
 };
 
-
 const DropdownContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -56,8 +53,8 @@ const DropdownBtnContainer = styled.div`
     height: 3rem;
     margin-bottom: 0.3rem;
     display: flex;
-  align-items: center;
-  justify-content: center; 
+    align-items: center;
+    justify-content: center; 
 `;
 
 const ListWrapper = styled.ul`
