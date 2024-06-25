@@ -7,6 +7,7 @@ interface ReadLeaderResponse {
   userId: number; 
   name: string;
   part: string; //enum인데 어떻게 처리할지 고민
+  team: string;
 }
 
 
@@ -15,52 +16,62 @@ function MemberVotePage() {
       {
         "userId": 1,
         "name": "ㅇㅇ",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "Azito"
       },
       {
         "userId": 2,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "Azito"
       },
       {
         "userId": 3,
         "name": "이지",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "Beatbuddy"
       },
       {
         "userId": 4,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "Beatbuddy"
       },
       {
         "userId": 5,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "PetPlate"
       },
       {
         "userId": 6,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "PetPlate"
       },
       {
         "userId": 7,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "Couplelog"
       },
       {
         "userId": 8,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "Couplelog"
       },
       {
         "userId": 9,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "TIG"
       },
       {
         "userId": 10,
         "name": "이지인",
-        "part": "FRONT"
+        "part": "FRONT",
+        "team": "TIG"
       }
   ]
 
@@ -68,52 +79,62 @@ function MemberVotePage() {
     {
       "userId": 1,
       "name": "ㅇㅇ",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "Azito"
     },
     {
       "userId": 2,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "Azito"
     },
     {
       "userId": 3,
       "name": "이지",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "Beatbuddy"
     },
     {
       "userId": 4,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "Beatbuddy"
     },
     {
       "userId": 5,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "PetPlate"
     },
     {
       "userId": 6,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "PetPlate"
     },
     {
       "userId": 7,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "Couplelog"
     },
     {
       "userId": 8,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "Couplelog"
     },
     {
       "userId": 9,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "TIG"
     },
     {
       "userId": 10,
       "name": "이지인",
-      "part": "BACK"
+      "part": "BACK",
+      "team": "TIG"
     }
 ]
 

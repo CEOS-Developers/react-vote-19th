@@ -6,6 +6,7 @@ interface FrontListsProps {
         userId: number; 
         name: string;
         part: string; //enum인데 어떻게 처리할지 고민
+        team: string
     }
   }
 
@@ -19,6 +20,7 @@ const MemberLists : React.FC<FrontListsProps> = ({member}) => {
     return (
       <MemberListsWrapper onClick={() => handleOnClick}>
         <MemberName>{member.name}</MemberName>
+        <Team>{member.team}</Team>
       </MemberListsWrapper>
     );
 }
@@ -29,6 +31,16 @@ const MemberName = styled.div`
     color: white;
     font-size: 2rem;
     font-weight: 600;
+    margin-top: 1rem;
+`
+
+const Team = styled.div`
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 1rem 2rem;
+    text-align : center;
+    word-wrap: break-word;
 `
 
 const MemberListsWrapper = styled.div`
@@ -50,7 +62,7 @@ const MemberListsWrapper = styled.div`
   backdrop-filter: blur(30px);
 
   &:hover {
-    ${MemberName} {
+    ${MemberName}, ${Team}{
       color: ${({theme})=>theme.colors.green}
     }
   }

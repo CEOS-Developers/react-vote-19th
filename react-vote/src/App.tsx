@@ -20,8 +20,8 @@ function App() {
             <Route path="/" element={<VoteMain/>} />
             <Route path="/teamvote" element={<TeamVotePage />} />
             <Route path="/membervote" element={<MemberVotePage />} />
-            <Route path="/teamresult" element={<TeamVoteResultPage />} />
-            <Route path="/memberresult" element={<MemberVoteResultPage />} />
+            <Route path="/team-result" element={<TeamVoteResultPage />} />
+            <Route path="/member-result" element={<MemberVoteResultPage />} />
           </Routes>
         </BrowserRouter>
     </AppContainer>
