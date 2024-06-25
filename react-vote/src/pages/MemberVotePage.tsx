@@ -1,6 +1,8 @@
 import styled from "styled-components"
+import { useState } from "react";
 import { Dropdown } from "../components/Dropdown";
 import MemberLists from "../components/MemberLists";
+import { DropdownPart } from "../components/DropdownPart";
 
 
 interface ReadLeaderResponse {
@@ -78,85 +80,91 @@ function MemberVotePage() {
   const backendLists : ReadLeaderResponse [] = [
     {
       "userId": 1,
-      "name": "ㅇㅇ",
+      "name": "김다희",
       "part": "BACK",
       "team": "Azito"
     },
     {
       "userId": 2,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "Azito"
     },
     {
       "userId": 3,
-      "name": "이지",
+      "name": "김다희",
       "part": "BACK",
       "team": "Beatbuddy"
     },
     {
       "userId": 4,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "Beatbuddy"
     },
     {
       "userId": 5,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "PetPlate"
     },
     {
       "userId": 6,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "PetPlate"
     },
     {
       "userId": 7,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "Couplelog"
     },
     {
       "userId": 8,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "Couplelog"
     },
     {
       "userId": 9,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "TIG"
     },
     {
       "userId": 10,
-      "name": "이지인",
+      "name": "김다희",
       "part": "BACK",
       "team": "TIG"
     }
 ]
 
 const partLists = ["Front", "Back"]
+const [isFront, setIsFront] = useState(true)
+const handlePartChange = () => {
+  setIsFront(!isFront);
+};
+const showingLists = isFront ? frontendLists : backendLists;
 
   return (
     <MemberVotePageContainer>
       <Title>Who do you want to vote for 
-        <Dropdown
+        <DropdownPart
           listsName="Part"
           lists = {partLists}
+          onChange={handlePartChange}
         />
         Leader?
       </Title>
       <MemberListsWrapper>
         <ColumnWrapper>
-          {frontendLists.slice(0, 5).map((member) => (
+          {showingLists.slice(0, 5).map((member) => (
             <MemberLists key={member.userId} member={member} />
           ))}
         </ColumnWrapper>
         <ColumnWrapper>
-          {frontendLists.slice(5).map((member) => (
+          {showingLists.slice(5).map((member) => (
             <MemberLists key={member.userId} member={member} />
           ))}
         </ColumnWrapper>

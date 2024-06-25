@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-interface DropdownProps {
+interface DropdownPartProps {
   listsName : string
   lists: string[];
+  onChange: (selectedItem: string) => void;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists }) => {
+export const DropdownPart: React.FC<DropdownPartProps> = ({ listsName, lists, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
@@ -16,6 +17,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists }) => {
 
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
+    onChange(item);
     setIsOpen(false);
   };
 
@@ -51,8 +53,8 @@ const DropdownBtnContainer = styled.div`
     height: 3rem;
     margin-bottom: 0.3rem;
     display: flex;
-  align-items: center;
-  justify-content: center; 
+    align-items: center;
+    justify-content: center; 
 `;
 
 const ListWrapper = styled.ul`
