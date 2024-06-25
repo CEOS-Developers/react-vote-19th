@@ -3,8 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'http://testeveytime.shop/';
 
+axios.defaults.withCredentials = true; // 혹시 모르니..
+
 const axiosInstance = axios.create({
 	baseURL: BASE_URL,
+	withCredentials: true,
+	// 쿠키를 포함한 요청을 할 때는 credentials 옵션을 설정해야 한다는 사실..!
 });
 /*
 axiosInstance.interceptors.request.use(

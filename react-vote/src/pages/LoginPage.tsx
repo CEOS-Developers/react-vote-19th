@@ -1,20 +1,48 @@
 import styled from "styled-components"
 import InputBox from "../components/InputBox"
 
+import { useLoginMutation } from '../queries/useLoginMutation';
+import React, { useState } from 'react';
+
+
+
 function LoginPage() {
+
+  const { login, isPending } = useLoginMutation();
+
+  const [userID, setUserID] = useState('');
+	const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+		const data = { userID, password };
+		console.log(data);
+		login(data); // mutate 함수 실행 -> 서버에 로그인 요청 -> 이에 따른 accesstoken을 받고 처리하는 것은 커스텀 훅 내에서 처리
+	};
+
+
+
   return (
   <LoginContainer>
         <Title>Login</Title>
         <LoginInfoWrapper>
-          <InputBoxWrapper>{/*
-            <InputBox
-              placeholder = "아이디"
-            />
-            <InputBox
-              placeholder = "비밀번호"
-            />*/}
+          <InputBoxWrapper>
+           <InputBox
+						placeholder='아이디'
+						value={userID}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setUserID(e.target.value)
+						}
+					/>
+					<InputBox
+						placeholder='비밀번호'
+						type='password'
+						value={password}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setPassword(e.target.value)
+						}
+					/>
           </InputBoxWrapper>
-          <LoginBtn>가입하기</LoginBtn>
+          <LoginBtn onClick={handleLogin}>로그인 하기</LoginBtn>
         </LoginInfoWrapper>
       </LoginContainer>  
     )
