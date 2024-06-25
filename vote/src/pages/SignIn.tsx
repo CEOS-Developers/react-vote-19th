@@ -3,7 +3,7 @@ import InputContainer from "@components/common/InputContainer";
 import { useState } from "react";
 import { BtnSign } from "@styles/BtnStyle";
 import { useNavigate } from "react-router-dom";
-import { usePostSignIn } from "@hooks/usePostSingIn";
+import { usePostSignIn } from "@hooks/usePostSignIn";
 
 const Wrapper = styled.div`
   display: flex;

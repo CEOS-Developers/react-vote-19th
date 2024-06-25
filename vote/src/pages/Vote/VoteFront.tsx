@@ -4,19 +4,8 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const FrontItems = [
-  { key: 1, name: "김다희", team: "Buldog" },
-  { key: 2, name: "김동혁", team: "BeatBuddy" },
-  { key: 3, name: "김민영", team: "CoupleLog" },
-  { key: 4, name: "김수현", team: "BeatBuddy" },
-  { key: 5, name: "김승완", team: "TIG" },
-  { key: 6, name: "송은수", team: "TIG" },
-  { key: 7, name: "안혜연", team: "CoupleLog" },
-  { key: 8, name: "이나현", team: "azito" },
-  { key: 9, name: "이지인", team: "Buldog" },
-  { key: 10, name: "조유담", team: "azito" },
-];
+import { useGetVotingOptionsById } from "@hooks/useGetVotingOptionsById";
+import { usePostVote } from "@hooks/usePostVote";
 
 const Section = styled.section`
   display: flex;
@@ -50,10 +39,6 @@ const TeamNameMidText = styled.span`
   ${({ theme }) => theme.fonts.TeamName_Mid};
 `;
 
-const TeamNameSmallText = styled.span`
-  ${({ theme }) => theme.fonts.TeamName_Small};
-`;
-
 const ButtonWrapper = styled.section`
   display: flex;
   justify-content: space-between;
@@ -63,6 +48,8 @@ const ButtonWrapper = styled.section`
 export default function VoteFront() {
   const navigate = useNavigate();
   const [selectedFront, setSelectedFront] = useState(null);
+  const { data } = useGetVotingOptionsById(1);
+  const { mutate: postVoteMutate } = usePostVote();
 
   const handleSelected = (itemKey: any) => {
     if (selectedFront === itemKey) {
@@ -73,31 +60,42 @@ export default function VoteFront() {
   };
 
   const handleSubmit = () => {
-    console.log("선택된 항목:", selectedFront);
-    /* API 연결 */
+    console.log("투표 완료", selectedFront);
+    if (selectedFront !== null) {
+      postVoteMutate({
+        topicId: 1,
+        votingOptionId: selectedFront,
+      });
+    } else {
+      console.error("선택된 항목이 없습니다.");
+    }
   };
 
-  return (
-    <Section>
-      <VoteHeader />
-      <CenterWrapper>
-        <HeaderText>FE 파트장 투표</HeaderText>
-        <VoteWrappers>
-          {FrontItems.map((item) => (
-            <VoteWrapper
-              key={item.key}
-              onClick={() => handleSelected(item.key)}
-              $isSelected={selectedFront === item.key}>
-              <TeamNameSmallText>{item.team}</TeamNameSmallText>
-              <TeamNameMidText>{item.name}</TeamNameMidText>
-            </VoteWrapper>
-          ))}
-        </VoteWrappers>
-        <ButtonWrapper>
-          <VoteBtn text="투표하기" onClick={handleSubmit} />
-          <VoteBtn text="결과보기" onClick={() => navigate("/result/front")} />
-        </ButtonWrapper>
-      </CenterWrapper>
-    </Section>
-  );
+  if (data) {
+    return (
+      <Section>
+        <VoteHeader />
+        <CenterWrapper>
+          <HeaderText>FE 파트장 투표</HeaderText>
+          <VoteWrappers>
+            {data.map((item: any) => (
+              <VoteWrapper
+                key={item.id}
+                onClick={() => handleSelected(item.id)}
+                $isSelected={selectedFront === item.id}>
+                <TeamNameMidText>{item.name}</TeamNameMidText>
+              </VoteWrapper>
+            ))}
+          </VoteWrappers>
+          <ButtonWrapper>
+            <VoteBtn text="투표하기" onClick={handleSubmit} />
+            <VoteBtn
+              text="결과보기"
+              onClick={() => navigate("/result/front")}
+            />
+          </ButtonWrapper>
+        </CenterWrapper>
+      </Section>
+    );
+  }
 }

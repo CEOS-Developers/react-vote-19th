@@ -47,6 +47,18 @@ const ConfirmText = styled.p<{ $passwordMatch: boolean }>`
   ${({ theme }) => theme.fonts.SignBtnText};
 `;
 
+const EmailVerifyText = styled.p<{ $emailVerify: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3.625rem;
+  background-color: ${({ $emailVerify, theme }) =>
+    $emailVerify ? theme.colors.active : theme.colors.confirm};
+  color: ${({ theme }) => theme.colors.black};
+  ${({ theme }) => theme.fonts.SignBtnText};
+`;
+
 const Toggle = styled.section`
   display: flex;
   flex-direction: column;
@@ -112,6 +124,7 @@ export default function SignUp() {
   const { mutate: postEmailMutate } = usePostEmail();
 
   const passwordMatch = PW !== "" && PW === pwCheck;
+  const emailVerify = emailCheck !== "" && emailCheck === verificationCode;
 
   const isSignUpDisabled =
     !passwordMatch ||
@@ -119,7 +132,7 @@ export default function SignUp() {
     PW === "" ||
     name === "" ||
     email === "" ||
-    // emailCheck === "" ||
+    !emailVerify ||
     selectedPart === "" ||
     selectedTeam === "";
 
@@ -147,20 +160,12 @@ export default function SignUp() {
     });
   }
 
-  function handleEmailCheck() {
-    if (emailCheck === verificationCode) {
-      alert("코드 일치");
-    } else {
-      alert("코드 불일치");
-    }
-  }
-
   return (
     <Wrapper>
       <Header>회원가입</Header>
       <Section>
         <FilledInput>
-          <InputContainer name="Name" state={name} setState={setName} />
+          <InputContainer name="NAME" state={name} setState={setName} />
           <InputContainer name="ID" state={ID} setState={setId} />
           <InputContainer name="PASSWORD" state={PW} setState={setPw} />
           <InputContainer custom={true}>
@@ -202,9 +207,9 @@ export default function SignUp() {
                   value={emailCheck}
                   onChange={(e) => setEmailCheck(e.target.value)}
                 />
-                <VerifyBtn type="button" onClick={handleEmailCheck}>
+                <EmailVerifyText $emailVerify={emailVerify}>
                   인증코드 확인
-                </VerifyBtn>
+                </EmailVerifyText>
               </div>
             </InputContainer>
           )}

@@ -1,17 +1,17 @@
 import { useMutation } from "react-query";
-import { postSignIn } from "@api/postSignIn";
+import { postVote } from "@api/postVote";
 import { useNavigate } from "react-router-dom";
 
-export function usePostSignIn() {
+export function usePostVote() {
   const navigate = useNavigate();
 
-  return useMutation(postSignIn, {
+  return useMutation(postVote, {
     onSuccess: () => {
-      console.log("로그인 성공");
+      console.log("투표 성공");
       navigate("/vote/main");
     },
     onError: (error) => {
-      console.log("로그인 실패", error);
+      console.log("투표 실패", error);
     },
   });
 }

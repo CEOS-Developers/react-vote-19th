@@ -3,19 +3,7 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const FrontItems = [
-  { key: 1, name: "김다희", team: "Buldog", count: 1 },
-  { key: 2, name: "김동혁", team: "BeatBuddy", count: 1 },
-  { key: 3, name: "김민영", team: "CoupleLog", count: 1 },
-  { key: 4, name: "김수현", team: "BeatBuddy", count: 1 },
-  { key: 5, name: "김승완", team: "TIG", count: 1 },
-  { key: 6, name: "송은수", team: "TIG", count: 1 },
-  { key: 7, name: "안혜연", team: "CoupleLog", count: 1 },
-  { key: 8, name: "이나현", team: "azito", count: 1 },
-  { key: 9, name: "이지인", team: "Buldog", count: 1 },
-  { key: 10, name: "조유담", team: "azito", count: 1 },
-];
+import { useGetFinalResult } from "@hooks/useGetFinalResult";
 
 const Section = styled.section`
   display: flex;
@@ -64,10 +52,6 @@ const TeamNameMidText = styled.span`
   ${({ theme }) => theme.fonts.TeamName_Mid};
 `;
 
-const TeamNameSmallText = styled.span`
-  ${({ theme }) => theme.fonts.TeamName_Small};
-`;
-
 const CountText = styled.span`
   ${({ theme }) => theme.fonts.Count};
 `;
@@ -86,34 +70,40 @@ const RankBox = styled.div`
 
 export default function ResultFront() {
   const navigate = useNavigate();
-  /* const Data = API 연결 . . 지금은 그냥 예시 */
+  const { data } = useGetFinalResult(1);
 
-  return (
-    <Section>
-      <VoteHeader />
-      <CenterWrapper>
-        <HeaderText>FE 파트장 투표 결과</HeaderText>
-        <VoteWrappers>
-          {FrontItems.map((item) => (
-            <VoteWrapper
-              key={item.key}
-              width="49.2rem"
-              height="8.5rem"
-              $disableHover={true}
-              $disableClick={true}>
-              <TextWrapper>
-                <LeftTextWrapper>
-                  <RankBox>2</RankBox>
-                  <TeamNameMidText>{item.name}</TeamNameMidText>
-                  <TeamNameSmallText>{item.team}</TeamNameSmallText>
-                </LeftTextWrapper>
-                <CountText>{item.count}</CountText>
-              </TextWrapper>
-            </VoteWrapper>
-          ))}
-        </VoteWrappers>
-        <VoteBtn text="돌아가기" onClick={() => navigate(-1)} />
-      </CenterWrapper>
-    </Section>
-  );
+  if (data) {
+    // votingOptionCount 기준으로 data를 내림차순 정렬
+    const sortedData = [...data].sort(
+      (a, b) => b.votingOptionCount - a.votingOptionCount,
+    );
+
+    return (
+      <Section>
+        <VoteHeader />
+        <CenterWrapper>
+          <HeaderText>FE 파트장 투표 결과</HeaderText>
+          <VoteWrappers>
+            {sortedData.map((item, index) => (
+              <VoteWrapper
+                key={item.votingOptionId}
+                width="49.2rem"
+                height="8.5rem"
+                $disableHover={true}
+                $disableClick={true}>
+                <TextWrapper>
+                  <LeftTextWrapper>
+                    <RankBox>{index + 1}</RankBox>
+                    <TeamNameMidText>{item.votingOptionName}</TeamNameMidText>
+                  </LeftTextWrapper>
+                  <CountText>{item.votingOptionCount}</CountText>
+                </TextWrapper>
+              </VoteWrapper>
+            ))}
+          </VoteWrappers>
+          <VoteBtn text="돌아가기" onClick={() => navigate("/vote/main")} />
+        </CenterWrapper>
+      </Section>
+    );
+  }
 }

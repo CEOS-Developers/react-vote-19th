@@ -19,9 +19,17 @@ const HeaderText = styled.h1`
   display: flex;
   justify-content: center;
   margin-top: 12.5rem;
-  margin-bottom: 8.2rem;
 
   ${({ theme }) => theme.fonts.Headline1};
+`;
+
+const SubTitleText = styled.h2`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+
+  ${({ theme }) => theme.fonts.TeamName_Small};
+  color: ${({ theme }) => theme.colors.confirm};
 `;
 
 const VoteWrappers = styled.section`
@@ -44,6 +52,7 @@ export default function VotePart() {
       <VoteHeader />
       <CenterWrapper>
         <HeaderText>파트장 투표</HeaderText>
+        <SubTitleText>* 본인 파트 + 한 번 투표할 수 있습니다</SubTitleText>
         <VoteWrappers>
           <PartWrapper>
             <VoteWrapper
