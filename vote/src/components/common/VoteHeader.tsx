@@ -16,17 +16,30 @@ const HeaderContainer = styled.section`
 const BtnContainer = styled.section`
   display: flex;
 
-  gap: 2rem;
+  gap: 1rem;
+`;
+
+const UserName = styled.p`
+  align-items: center;
+  padding: 1rem 2rem;
+
+  border-radius: 2rem;
+
+  ${({ theme }) => theme.fonts.TeamName_Small};
+  background-color: ${({ theme }) => theme.colors.active};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 /** header */
 export default function VoteHeader() {
+  const savedData = localStorage.getItem("INFO");
+  const info = savedData ? JSON.parse(savedData) : [];
+
   return (
     <HeaderContainer as="header">
       <LogoIcon />
       <BtnContainer>
-        <SignBtn text="로그인" />
-        <SignBtn text="회원가입" />
+        <UserName>{info} 님</UserName>
         <SignBtn text="로그아웃" />
       </BtnContainer>
     </HeaderContainer>

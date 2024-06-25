@@ -2,13 +2,12 @@ import styled from "styled-components";
 import InputContainer from "@components/common/InputContainer";
 import { useState } from "react";
 import { BtnSign } from "@styles/BtnStyle";
-import { usePostSignIn } from "@hooks/usePostSingIn";
 import { useNavigate } from "react-router-dom";
+import { usePostSignIn } from "@hooks/usePostSingIn";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
   gap: 2.4rem;
   padding: 14.5rem 20.25rem;
 `;
@@ -20,19 +19,15 @@ const Header = styled.h1`
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-
   padding: 6rem 4rem 2rem;
   gap: 7.4rem;
-
   border-radius: 1.25rem;
-
   background-color: ${({ theme }) => theme.colors.light_blue};
 `;
 
 const FilledInput = styled.section`
   display: flex;
   flex-direction: column;
-
   gap: 2.25rem;
 `;
 
@@ -49,11 +44,19 @@ const SignInBtn = styled(BtnSign)`
 export default function SignIn() {
   const [ID, setId] = useState("");
   const [PW, setPw] = useState("");
+
   const { mutate: postSignInMutate } = usePostSignIn();
   const navigate = useNavigate();
 
   function handleSignIn() {
-    postSignInMutate({ username: ID, password: PW });
+    postSignInMutate(
+      { username: ID, password: PW },
+      {
+        onSuccess: () => {
+          localStorage.setItem("INFO", JSON.stringify(ID));
+        },
+      },
+    );
   }
 
   function moveToSignUp() {
