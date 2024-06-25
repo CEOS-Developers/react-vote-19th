@@ -101,7 +101,7 @@ export default function ResultBack() {
               </VoteWrapper>
             ))}
           </VoteWrappers>
-          <VoteBtn text="돌아가기" onClick={() => navigate(-1)} />
+          <VoteBtn text="돌아가기" onClick={() => navigate("/vote/main")} />
         </CenterWrapper>
       </Section>
     );

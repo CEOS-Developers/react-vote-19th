@@ -4,7 +4,7 @@ import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useGetVotingOptionsByTopicId } from "@hooks/useGetVotingOptionsByTopicId";
+import { useGetVotingOptionsById } from "@hooks/useGetVotingOptionsById";
 import { usePostVote } from "@hooks/usePostVote";
 
 const Section = styled.section`
@@ -48,7 +48,7 @@ const ButtonWrapper = styled.section`
 export default function VoteBack() {
   const navigate = useNavigate();
   const [selectedBack, setSelectedBack] = useState(null);
-  const { data } = useGetVotingOptionsByTopicId(2);
+  const { data } = useGetVotingOptionsById(2);
   const { mutate: postVoteMutate } = usePostVote();
 
   const handleSelected = (itemKey: any) => {
