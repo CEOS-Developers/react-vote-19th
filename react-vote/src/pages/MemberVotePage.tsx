@@ -140,12 +140,18 @@ function MemberVotePage() {
     }
 ]
 
-const partLists = ["Front", "Back"]
-const [isFront, setIsFront] = useState(true)
-const handlePartChange = () => {
-  setIsFront(!isFront);
-};
-const showingLists = isFront ? frontendLists : backendLists;
+  const partLists = ["Front", "Back"];
+
+  const [showingLists, setShowingLists] = useState(frontendLists);
+
+  const handlePartChange = (selectedPart: string) => {
+    if (selectedPart === "Front") {
+      setShowingLists(frontendLists);
+    } else if (selectedPart === "Back") {
+      setShowingLists(backendLists);
+    }
+  };
+
 
   return (
     <MemberVotePageContainer>

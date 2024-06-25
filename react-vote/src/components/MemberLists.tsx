@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useState } from "react";
 
-interface FrontListsProps {
+interface ReadLeaderResponseProps {
     member :{
         userId: number; 
         name: string;
@@ -10,7 +10,7 @@ interface FrontListsProps {
     }
   }
 
-const MemberLists : React.FC<FrontListsProps> = ({member}) => {
+const MemberLists : React.FC<ReadLeaderResponseProps> = ({member}) => {
     const [selected, isSelected] = useState(false);
 
     const handleOnClick = () => {
