@@ -41,7 +41,7 @@ function LoginPage() {
 						}
 					/>
 				</InputBoxWrapper>
-				<LoginBtn onClick={handleLogin} disabled={isFormValid()}>
+				<LoginBtn onClick={handleLogin} disabled={!isFormValid()}>
 					로그인 하기
 				</LoginBtn>
 			</LoginInfoWrapper>
