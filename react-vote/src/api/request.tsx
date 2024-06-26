@@ -21,8 +21,10 @@ export const authAPI = {
 	login: async (data: LoginData) => {
 		return await axiosInstance.post('/api/v1/auth/login', data);
 	},
-	logout: async () => {
-		return await axiosInstance.post('/api/v1/auth/logout');
+	logout: async (accessToken: string) => {
+		return await axiosInstance.post('/api/v1/auth/logout'),{	headers: {
+            accessToken,
+        },}
 	},
 	reissue: async (accessToken: string, refreshToken: string) => {
 		return await axiosInstance.post('/api/v1/auth/reissue', null, {

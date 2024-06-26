@@ -5,9 +5,13 @@ import { useNavigate } from 'react-router-dom';
 export const useLogoutMutation = () => {
 	const navigate = useNavigate();
 
+	const token = localStorage.getItem('accessToken');
+
 	const { mutate, error } = useMutation({
 		mutationFn: async () => {
-			await authAPI.logout();
+			if (token) {
+				await authAPI.logout(token);
+			}
 		},
 		onSuccess: () => {
 			localStorage.removeItem('accessToken');
