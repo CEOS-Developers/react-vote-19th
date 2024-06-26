@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
         background-image: url(${backgroundImage});
         background-size: cover; /* 이미지를 화면에 꽉 채우도록 설정 */
         background-position: center; /* 이미지를 가운데 정렬 */
+        line-height: 1.6; /* 줄 간격 설정 */
     }
 
     body *:lang(ko) {
