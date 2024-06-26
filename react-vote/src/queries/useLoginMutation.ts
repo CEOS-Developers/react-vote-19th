@@ -34,12 +34,20 @@ export const useLoginMutation = () => {
 				);
 
 				navigate(`/`);
-                
 			} else if (res.status === 400) {
 				alert('잘못된 아이디/비밀번호입니다.');
+			} else {
+				alert('다시 로그인하세요.');
 			}
 
 			return res.data;
+		},
+		onError: (error: any) => {
+			if (error.response.status === 400) {
+				alert('잘못된 아이디/비밀번호입니다.');
+			} else {
+				alert('다시 로그인하세요.');
+			}
 		},
 	});
 

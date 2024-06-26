@@ -7,7 +7,6 @@ import { useSignupMutation } from '../queries/useSignupMutation';
 
 function SignUpPage() {
 	const teamLists = ['Azito', 'BeatBuddy', 'Petplate', 'Couplelog', 'TIG'];
-	const roleLists = ['LEADER', 'GENERAL'];
 	const partLists = ['FRONT', 'BACK'];
 
 	const { join, isPending } = useSignupMutation();
@@ -31,7 +30,6 @@ function SignUpPage() {
 			password === confirmPassword &&
 			email !== '' &&
 			team !== '' &&
-			role !== '' &&
 			part !== ''
 		);
 	};

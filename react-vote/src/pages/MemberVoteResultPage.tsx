@@ -19,12 +19,16 @@ function MemberVoteResultPage() {
     leaderResults: frontendLists,
     isLoading: isLoadingFrontend,
     error: errorFrontend,
+    refetch: refetchFrontend
+
   } = useGetLeaderResults('front');
 
   const {
     leaderResults: backendLists,
     isLoading: isLoadingBackend,
     error: errorBackend,
+    refetch: refetchBackend
+,
   } = useGetLeaderResults('back');
 
   useEffect(() => {
