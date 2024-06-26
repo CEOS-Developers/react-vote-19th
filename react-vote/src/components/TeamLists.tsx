@@ -12,11 +12,6 @@ interface TeamListsProps {
 }
 
 const TeamLists: React.FC<TeamListsProps> = ({ team, onClick, isSelected }) => {
-	// const [selected, isSelected] = useState(false);
-
-	// const handleOnClick = () => {
-	//     isSelected(!selected)
-	// }
 
 	return (
 		<TeamListsWrapper>
