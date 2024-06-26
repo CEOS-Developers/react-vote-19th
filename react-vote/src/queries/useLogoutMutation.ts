@@ -17,7 +17,6 @@ export const useLogoutMutation = () => {
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
 			alert('로그아웃 되었습니다.');
-			navigate('/login');
 		},
 		onError: (error: any) => {
 			console.error('Logout error:', error);
