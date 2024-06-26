@@ -44,6 +44,8 @@ const MemberName = styled.div`
 	font-size: 2rem;
 	font-weight: 700;
 `;
+
+
 const VoteCount = styled.div`
 	width: 30%;
 	color: ${({ theme }) => theme.colors.green};
