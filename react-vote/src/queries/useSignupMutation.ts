@@ -10,13 +10,7 @@ export const useSignupMutation = () => {
 		mutationFn: async (data: JoinData) => {
 			const res = await userAPI.join(data);
 
-			console.log(error.message);
-
-			console.log(res.status);
-			if (res.status === 201) {
-				alert('회원가입 성공! 이제 로그인 하세요.');
-				navigate(`/login`);
-			} /*else if (res.status === 409) {
+			/*else if (res.status === 409) {
 				alert('이미 존재하는 아이디/이메일입니다.');
 			} else if (res.status === 404) {
 				alert('존재하지 않는 팀입니다.');
@@ -27,6 +21,13 @@ export const useSignupMutation = () => {
 			}*/
 
 			return res.data;
+		},
+
+		onSuccess: (res: any) => {
+			if (res.status === 201) {
+				alert('회원가입 성공! 이제 로그인 하세요.');
+				navigate(`/login`);
+			}
 		},
 
 		onError: (error: any) => {
