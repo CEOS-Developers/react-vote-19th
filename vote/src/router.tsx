@@ -7,11 +7,10 @@ import VoteLayout from "@components/layout/VoteLayout";
 import VoteMain from "@pages/Vote/VoteMain";
 import SelectPart from "@pages/Vote/SelectPart";
 import SelectDemo from "@pages/Vote/SelectDemo";
-import VoteDemo from "@pages/Vote/VoteDemo";
 import VotePart from "@pages/Vote/VotePart";
+import VoteDemo from "@pages/Vote/VoteDemo";
 import ResultLayout from "@components/layout/VoteLayout";
-import ResultFront from "@pages/Result/ResultFront";
-import ResultBack from "@pages/Result/ResultBack";
+import ResultPart from "@pages/Result/ResultPart";
 import ResultDemo from "@pages/Result/ResultDemo";
 
 export const Router = createBrowserRouter([
@@ -38,8 +37,7 @@ export const Router = createBrowserRouter([
         path: "/result",
         element: <ResultLayout />,
         children: [
-          { path: "/result/front", element: <ResultFront /> },
-          { path: "/result/back", element: <ResultBack /> },
+          { path: "/result/:type", element: <ResultPart /> },
           { path: "/result/demo", element: <ResultDemo /> },
         ],
       },

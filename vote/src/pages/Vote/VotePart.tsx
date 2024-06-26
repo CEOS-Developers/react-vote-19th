@@ -45,7 +45,7 @@ const ButtonWrapper = styled.section`
   gap: 1.3rem;
 `;
 
-export default function Vote() {
+export default function VotePart() {
   const { type } = useParams(); // useParams 훅을 통해 type 값을 받아와서 topicId와 HeaderText를 조건부로 설정
   const navigate = useNavigate();
   const [selected, setSelected] = useState(null);
