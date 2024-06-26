@@ -28,13 +28,7 @@ export const useSignupMutation = () => {
 
 			return res.data;
 		},
-		/**
-		onSuccess: (res: any) => {
-			if (res.status === 201) {
-				alert('회원가입 성공! 이제 로그인 하세요.');
-				navigate(`/login`);
-			}
-		},*/
+
 		onError: (error: any) => {
 			if (error.response.status === 409) {
 				alert('이미 존재하는 아이디/이메일입니다.');
