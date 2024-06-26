@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { teamAPI } from '../api/request';
 import { useVoteTeamMutation } from '../queries/useVoteMutation';
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 interface ReadTeamResponse {
 	teamId: number; // 정수형으로 사용
@@ -14,6 +14,7 @@ interface ReadTeamResponse {
 
 function TeamVotePage() {
 	const navigate = useNavigate();
+	const token = localStorage.getItem('accessToken');
 
 	const { data, isLoading, error } = useQuery<ReadTeamResponse[], Error>({
 		queryKey: ['getTeams'],
@@ -57,7 +58,18 @@ function TeamVotePage() {
 			</TeamListsWrapper>
 			<BtnWrapper>
 				<VoteBtn onClick={handleVote}>selected !</VoteBtn>
-				<ResultBtn onClick = {() => navigate("/member-result")}>show result</ResultBtn>
+				<ResultBtn
+					onClick={() => {
+						if (!token) {
+							alert('로그인이 필요합니다.');
+							navigate('/login');
+						} else {
+							navigate('/team-result');
+						}
+					}}
+				>
+					show result
+				</ResultBtn>
 			</BtnWrapper>
 		</TeamVotePageContainer>
 	);
@@ -86,7 +98,7 @@ const BtnWrapper = styled.div`
 	flex-direction: row;
 	align-items: center;
 	gap: 1rem;
-`
+`;
 
 const VoteBtn = styled.div`
 	width: 15vw;
@@ -113,11 +125,10 @@ const VoteBtn = styled.div`
 	font-weight: 550;
 
 	&:hover {
-		background-color : ${({theme}) => theme.colors.green};
+		background-color: ${({ theme }) => theme.colors.green};
 		border: none;
 	}
 `;
-
 
 const ResultBtn = styled.div`
 	width: 15vw;
@@ -144,7 +155,7 @@ const ResultBtn = styled.div`
 	font-weight: 550;
 
 	&:hover {
-		background-color : ${({theme}) => theme.colors.green};
+		background-color: ${({ theme }) => theme.colors.green};
 		border: none;
 	}
-`
+`;

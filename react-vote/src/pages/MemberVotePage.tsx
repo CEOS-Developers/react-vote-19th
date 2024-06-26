@@ -19,6 +19,8 @@ function MemberVotePage() {
 	const { memberVote } = useVoteMemberMutation();
 	const [selectedMemberId, setSelectedMemberId] = useState<number | null>(null);
 
+  const token = localStorage.getItem('accessToken');
+
 
 
 	const handleVote = () => {
@@ -95,7 +97,12 @@ function MemberVotePage() {
 			</MemberListsWrapper>
 			<BtnWrapper>
 				<VoteBtn onClick={handleVote}>selected !</VoteBtn>
-				<ResultBtn onClick = {() => navigate("/member-result")}>show result</ResultBtn>
+				<ResultBtn onClick ={() => {if (!token) {
+				alert('로그인이 필요합니다.');
+				navigate('/login');
+			}else{navigate("/member-result")
+        }
+         } }>show result</ResultBtn>
 			</BtnWrapper>
 		</MemberVotePageContainer>
 	);

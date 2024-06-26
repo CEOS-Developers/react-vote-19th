@@ -6,6 +6,7 @@ export const useGetTeamResults = () => {
 	const navigate = useNavigate();
 
 	const { data, isLoading, error } = useQuery({
+        
 		queryKey: ['teamResults'],
 		queryFn: async () => {
 			const res = await teamAPI.getTeamVotes();
