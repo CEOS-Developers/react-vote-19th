@@ -12,6 +12,7 @@ export const useVoteTeamMutation = () => {
 		},
 		onSuccess: () => {
 			alert('투표가 성공적으로 완료되었습니다!');
+			navigate('/team-result');
 		},
 		onError: (error: any) => {
 			if (!token) {
@@ -38,6 +39,7 @@ export const useVoteMemberMutation = () => {
 		},
 		onSuccess: () => {
 			alert('투표가 성공적으로 완료되었습니다!');
+			navigate('/member-result');
 		},
 		onError: (error: any) => {
 			if (!token) {

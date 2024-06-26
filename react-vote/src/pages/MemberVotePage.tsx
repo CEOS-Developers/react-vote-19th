@@ -5,6 +5,7 @@ import MemberLists from '../components/MemberLists';
 import { useGetLeaders } from '../queries/useGetLeader';
 import { useVoteMemberMutation } from '../queries/useVoteMutation';
 
+
 interface ReadLeaderResponse {
 	userId: number;
 	name: string;
@@ -15,6 +16,8 @@ interface ReadLeaderResponse {
 function MemberVotePage() {
 	const { memberVote } = useVoteMemberMutation();
 	const [selectedMemberId, setSelectedMemberId] = useState<number | null>(null);
+
+
 
 	const handleVote = () => {
 		if (selectedMemberId !== null) {
