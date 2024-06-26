@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import VoteHeader from "@components/common/VoteHeader";
 import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { useGetVotingOptionsById } from "@hooks/useGetVotingOptionsById";
 import { usePostVote } from "@hooks/usePostVote";
 
@@ -45,26 +45,23 @@ const ButtonWrapper = styled.section`
   gap: 1.3rem;
 `;
 
-export default function VoteFront() {
+export default function VotePart() {
+  const { type } = useParams(); // useParams 훅을 통해 type 값을 받아와서 topicId와 HeaderText를 조건부로 설정
   const navigate = useNavigate();
-  const [selectedFront, setSelectedFront] = useState(null);
-  const { data } = useGetVotingOptionsById(1);
+  const [selected, setSelected] = useState(null);
+  const topicId = type === "front" ? 1 : 2;
+  const { data } = useGetVotingOptionsById(topicId);
   const { mutate: postVoteMutate } = usePostVote();
 
   const handleSelected = (itemKey: any) => {
-    if (selectedFront === itemKey) {
-      setSelectedFront(null);
-    } else {
-      setSelectedFront(itemKey);
-    }
+    setSelected(selected === itemKey ? null : itemKey);
   };
 
   const handleSubmit = () => {
-    console.log("투표 완료", selectedFront);
-    if (selectedFront !== null) {
+    if (selected !== null) {
       postVoteMutate({
-        topicId: 1,
-        votingOptionId: selectedFront,
+        topicId,
+        votingOptionId: selected,
       });
     } else {
       console.error("선택된 항목이 없습니다.");
@@ -76,13 +73,15 @@ export default function VoteFront() {
       <Section>
         <VoteHeader />
         <CenterWrapper>
-          <HeaderText>FE 파트장 투표</HeaderText>
+          <HeaderText>
+            {type === "front" ? "FE 파트장 투표" : "BE 파트장 투표"}
+          </HeaderText>
           <VoteWrappers>
-            {data.map((item: any) => (
+            {data.map((item) => (
               <VoteWrapper
                 key={item.id}
                 onClick={() => handleSelected(item.id)}
-                $isSelected={selectedFront === item.id}>
+                $isSelected={selected === item.id}>
                 <TeamNameMidText>{item.name}</TeamNameMidText>
               </VoteWrapper>
             ))}
@@ -91,11 +90,13 @@ export default function VoteFront() {
             <VoteBtn text="투표하기" onClick={handleSubmit} />
             <VoteBtn
               text="결과보기"
-              onClick={() => navigate("/result/front")}
+              onClick={() => navigate(`/result/${type}`)}
             />
           </ButtonWrapper>
         </CenterWrapper>
       </Section>
     );
   }
+
+  return null;
 }

@@ -1,8 +1,8 @@
+import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import VoteHeader from "@components/common/VoteHeader";
 import VoteWrapper from "@components/common/VoteWrapper";
 import VoteBtn from "@components/common/VoteBtn";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { useGetFinalResult } from "@hooks/useGetFinalResult";
 
 const Section = styled.section`
@@ -68,9 +68,11 @@ const RankBox = styled.div`
   background: ${({ theme }) => theme.colors.main_blue};
 `;
 
-export default function ResultBack() {
+export default function ResultPart() {
+  const { type } = useParams(); // useParams 훅을 통해 type 값을 받아와서 topicId와 HeaderText를 조건부로 설정
   const navigate = useNavigate();
-  const { data } = useGetFinalResult(2);
+  const topicId = type === "front" ? 1 : 2;
+  const { data } = useGetFinalResult(topicId);
 
   if (data) {
     // votingOptionCount 기준으로 data를 내림차순 정렬
@@ -82,7 +84,9 @@ export default function ResultBack() {
       <Section>
         <VoteHeader />
         <CenterWrapper>
-          <HeaderText>BE 파트장 투표 결과</HeaderText>
+          <HeaderText>
+            {type === "front" ? "FE 파트장 투표 결과" : "BE 파트장 투표 결과"}
+          </HeaderText>
           <VoteWrappers>
             {sortedData.map((item, index) => (
               <VoteWrapper
