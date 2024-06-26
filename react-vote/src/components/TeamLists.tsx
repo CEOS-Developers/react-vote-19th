@@ -35,6 +35,7 @@ const TeamName = styled.div`
 	font-size: 2rem;
 	font-weight: 600;
 	margin-top: 1rem;
+	text-align: center;
 `;
 const Introduction = styled.div`
 	color: white;

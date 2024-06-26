@@ -23,6 +23,10 @@ function SignUpPage() {
 	const [role, setRole] = useState('');
 	const [part, setPart] = useState('');
 
+	const isFormValid = () => {
+		return name !== '' && username !== '' && password !== '' && email !== '' && team !== '' && role !== '' && part !== '';
+	};
+
 	const handleSignup = async () => {
 		const data = { name, username, password, email, team, role, part };
 		console.log(data);
@@ -71,7 +75,6 @@ function SignUpPage() {
 						}
 					/>
 				</InputBoxWrapper>
-				<ValidateBtn>이메일 인증</ValidateBtn>
 
 				<DropdownWrapper>
 					<Dropdown
@@ -90,8 +93,8 @@ function SignUpPage() {
 						onChange={(selectedRole: string) => setRole(selectedRole)}
 					/>
 				</DropdownWrapper>
-				<EnrollBtn onClick={handleSignup}>
-					{isPending ? '가입 중...' : '가입하기'}
+				<EnrollBtn onClick={handleSignup} disabled={!isFormValid()}>
+					{isPending ? 'wait plz..' : 'sign up!'}
 				</EnrollBtn>
 			</SignUpInfoWrapper>
 		</SignUpContainer>
@@ -139,31 +142,29 @@ const InputBoxWrapper = styled.div`
 	flex-direction: column;
 	width: 80%;
 `;
-const ValidateBtn = styled.div`
-	border: 0.1rem solid rgba(255, 255, 255, 0.3);
-	border-radius: 5px;
-	background-color: white;
-	width: 80%;
-	height: 3rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 1rem;
-`;
 
 const DropdownWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	margin-bottom: 1rem;
-`;
-const EnrollBtn = styled.div`
-	border: 0.1rem solid rgba(255, 255, 255, 0.3);
-	border-radius: 5px;
-	background-color: white;
 	width: 80%;
-	height: 3rem;
+`;
+const EnrollBtn = styled.button`
+	border: none;
+	border-radius: 10px;
+	width: 50%;
+	height: 3.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 1rem;
+
+	background-color: ${({ disabled,theme }) => (disabled ? 'white' : theme.colors.green)};
+	cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+	color: ${({ disabled }) => (disabled ? 'grey' : 'white')};
+
+	font-size: 1.2rem;
+    font-weight: 520;
 `;
+

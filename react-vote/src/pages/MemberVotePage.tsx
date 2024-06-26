@@ -11,170 +11,169 @@ interface ReadLeaderResponse {
 }
 
 function MemberVotePage() {
-	const frontendLists: ReadLeaderResponse[] = [
-		{
-			userId: 1,
-			name: 'ㅇㅇ',
-			part: 'FRONT',
-			team: 'Azito',
-		},
-		{
-			userId: 2,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'Azito',
-		},
-		{
-			userId: 3,
-			name: '이지',
-			part: 'FRONT',
-			team: 'Beatbuddy',
-		},
-		{
-			userId: 4,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'Beatbuddy',
-		},
-		{
-			userId: 5,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'PetPlate',
-		},
-		{
-			userId: 6,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'PetPlate',
-		},
-		{
-			userId: 7,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'Couplelog',
-		},
-		{
-			userId: 8,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'Couplelog',
-		},
-		{
-			userId: 9,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'TIG',
-		},
-		{
-			userId: 10,
-			name: '이지인',
-			part: 'FRONT',
-			team: 'TIG',
-		},
-	];
+  const frontendLists : ReadLeaderResponse [] = [
+      {
+        "userId": 0,
+        "name": "이나현",
+        "part": "FRONT",
+        "team": "Azito"
+      },
+      {
+        "userId": 1,
+        "name": "조유담",
+        "part": "FRONT",
+        "team": "Azito"
+      },
+      {
+        "userId": 2,
+        "name": "김동혁",
+        "part": "FRONT",
+        "team": "Beatbuddy"
+      },
+      {
+        "userId": 3,
+        "name": "김수현",
+        "part": "FRONT",
+        "team": "Beatbuddy"
+      },
+      {
+        "userId": 4,
+        "name": "이지인",
+        "part": "FRONT",
+        "team": "PetPlate"
+      },
+      {
+        "userId": 5,
+        "name": "김다희",
+        "part": "FRONT",
+        "team": "PetPlate"
+      },
+      {
+        "userId": 6,
+        "name": "김민영",
+        "part": "FRONT",
+        "team": "Couplelog"
+      },
+      {
+        "userId": 7,
+        "name": "안혜연",
+        "part": "FRONT",
+        "team": "Couplelog"
+      },
+      {
+        "userId": 8,
+        "name": "김승완",
+        "part": "FRONT",
+        "team": "TIG"
+      },
+      {
+        "userId": 9,
+        "name": "송은수",
+        "part": "FRONT",
+        "team": "TIG"
+      }
+  ]
 
-	const backendLists: ReadLeaderResponse[] = [
-		{
-			userId: 1,
-			name: '김다희',
-			part: 'BACK',
-			team: 'Azito',
-		},
-		{
-			userId: 2,
-			name: '김다희',
-			part: 'BACK',
-			team: 'Azito',
-		},
-		{
-			userId: 3,
-			name: '김다희',
-			part: 'BACK',
-			team: 'Beatbuddy',
-		},
-		{
-			userId: 4,
-			name: '김다희',
-			part: 'BACK',
-			team: 'Beatbuddy',
-		},
-		{
-			userId: 5,
-			name: '김다희',
-			part: 'BACK',
-			team: 'PetPlate',
-		},
-		{
-			userId: 6,
-			name: '김다희',
-			part: 'BACK',
-			team: 'PetPlate',
-		},
-		{
-			userId: 7,
-			name: '김다희',
-			part: 'BACK',
-			team: 'Couplelog',
-		},
-		{
-			userId: 8,
-			name: '김다희',
-			part: 'BACK',
-			team: 'Couplelog',
-		},
-		{
-			userId: 9,
-			name: '김다희',
-			part: 'BACK',
-			team: 'TIG',
-		},
-		{
-			userId: 10,
-			name: '김다희',
-			part: 'BACK',
-			team: 'TIG',
-		},
-	];
+  const backendLists : ReadLeaderResponse [] = [
+    {
+      "userId": 1,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "Azito"
+    },
+    {
+      "userId": 2,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "Azito"
+    },
+    {
+      "userId": 3,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "Beatbuddy"
+    },
+    {
+      "userId": 4,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "Beatbuddy"
+    },
+    {
+      "userId": 5,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "PetPlate"
+    },
+    {
+      "userId": 6,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "PetPlate"
+    },
+    {
+      "userId": 7,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "Couplelog"
+    },
+    {
+      "userId": 8,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "Couplelog"
+    },
+    {
+      "userId": 9,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "TIG"
+    },
+    {
+      "userId": 10,
+      "name": "김다희",
+      "part": "BACK",
+      "team": "TIG"
+    }
+]
 
-	const partLists = ['Front', 'Back'];
+  
 
-	const [showingLists, setShowingLists] = useState(frontendLists);
+  //toggle
+  const [isFront, setIsFront] = useState("FRONT");
+  const [showingLists, setShowingLists] = useState(frontendLists);
+  const togglePart = () => {
+    if(isFront === "FRONT") {
+      setIsFront("BACK");
+      setShowingLists(backendLists);
+    } else{
+      setIsFront("FRONT");
+      setShowingLists(frontendLists);
+    }
+  }
 
-	const handlePartChange = (selectedPart: string) => {
-		if (selectedPart === 'Front') {
-			setShowingLists(frontendLists);
-		} else if (selectedPart === 'Back') {
-			setShowingLists(backendLists);
-		}
-	};
 
-	return (
-		<MemberVotePageContainer>
-			<Title>
-				Who do you want to vote for
-				<Dropdown
-					listsName='Part'
-					lists={partLists}
-					onChange={handlePartChange}
-				/>
-				Leader?
-			</Title>
-			<MemberListsWrapper>
-				<ColumnWrapper>
-					{showingLists.slice(0, 5).map((member) => (
-						<MemberLists key={member.userId} member={member} />
-					))}
-				</ColumnWrapper>
-				<ColumnWrapper>
-					{showingLists.slice(5).map((member) => (
-						<MemberLists key={member.userId} member={member} />
-					))}
-				</ColumnWrapper>
-			</MemberListsWrapper>
-			<VoteBtn>selected !</VoteBtn>
-		</MemberVotePageContainer>
-	);
+  return (
+    <MemberVotePageContainer>
+      <Title>
+        Who do you want to vote for <br/>
+        <span onClick={togglePart}>{isFront}</span> Leader?
+      </Title>
+      <MemberListsWrapper>
+        <ColumnWrapper>
+          {showingLists.slice(0, 5).map((member) => (
+            <MemberLists key={member.userId} member={member} />
+          ))}
+        </ColumnWrapper>
+        <ColumnWrapper>
+          {showingLists.slice(5).map((member) => (
+            <MemberLists key={member.userId} member={member} />
+          ))}
+        </ColumnWrapper>
+      </MemberListsWrapper>
+      <VoteBtn>selected !</VoteBtn>
+    </MemberVotePageContainer>
+  )
 }
 
 export default MemberVotePage;

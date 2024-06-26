@@ -55,6 +55,7 @@ const PartBtn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   //뒤에 불투명 배경 요소
   background-color: transparent;
@@ -84,6 +85,7 @@ const DemoDayBtn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   //뒤에 불투명 배경 요소
   background-color: transparent;

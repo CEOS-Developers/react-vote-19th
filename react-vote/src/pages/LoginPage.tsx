@@ -19,6 +19,9 @@ function LoginPage() {
 		login(data); // mutate 함수 실행 -> 서버에 로그인 요청 -> 이에 따른 accesstoken을 받고 처리하는 것은 커스텀 훅 내에서 처리
 	};
 
+  const isFormValid = () => {
+		return userID !== '' && password !== '';
+	};
 
 
   return (
@@ -42,7 +45,7 @@ function LoginPage() {
 						}
 					/>
           </InputBoxWrapper>
-          <LoginBtn onClick={handleLogin}>로그인 하기</LoginBtn>
+          <LoginBtn onClick={handleLogin} disabled={!isFormValid()}>로그인 하기</LoginBtn>
         </LoginInfoWrapper>
       </LoginContainer>  
     )
@@ -83,14 +86,20 @@ const InputBoxWrapper = styled.div`
     flex-direction: column;
     width: 80%;
 `
-const LoginBtn = styled.div`
-    border: 0.1rem solid rgba(255, 255, 255, 0.3);
-    border-radius : 5px;
-    background-color : white;
-    width: 80%;
+const LoginBtn = styled.button`
+    border: none;
+    border-radius : 10px;
+    width: 50%;
     height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center; 
     margin-bottom: 1rem;
+
+    background-color: ${({ disabled,theme }) => (disabled ? 'white' : theme.colors.green)};
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+    color: ${({ disabled }) => (disabled ? 'grey' : 'white')};
+
+    font-size: 1.2rem;
+    font-weight: 520;
 `
