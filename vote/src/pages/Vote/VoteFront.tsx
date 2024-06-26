@@ -60,7 +60,6 @@ export default function VoteFront() {
   };
 
   const handleSubmit = () => {
-    console.log("투표 완료", selectedFront);
     if (selectedFront !== null) {
       postVoteMutate({
         topicId: 1,
