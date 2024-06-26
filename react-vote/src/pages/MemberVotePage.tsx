@@ -1,8 +1,6 @@
 import styled from "styled-components"
 import { useState } from "react";
-import { Dropdown } from "../components/Dropdown";
 import MemberLists from "../components/MemberLists";
-import { DropdownPart } from "../components/DropdownPart";
 
 
 interface ReadLeaderResponse {
@@ -140,28 +138,27 @@ function MemberVotePage() {
     }
 ]
 
-  const partLists = ["Front", "Back"];
+  
 
+  //toggle
+  const [isFront, setIsFront] = useState("FRONT");
   const [showingLists, setShowingLists] = useState(frontendLists);
-
-  const handlePartChange = (selectedPart: string) => {
-    if (selectedPart === "Front") {
-      setShowingLists(frontendLists);
-    } else if (selectedPart === "Back") {
+  const togglePart = () => {
+    if(isFront === "FRONT") {
+      setIsFront("BACK");
       setShowingLists(backendLists);
+    } else{
+      setIsFront("FRONT");
+      setShowingLists(frontendLists);
     }
-  };
+  }
 
 
   return (
     <MemberVotePageContainer>
-      <Title>Who do you want to vote for 
-        <DropdownPart
-          listsName="Part"
-          lists = {partLists}
-          onChange={handlePartChange}
-        />
-        Leader?
+      <Title>
+        Who do you want to vote for <br/>
+        <span onClick={togglePart}>{isFront}</span> Leader?
       </Title>
       <MemberListsWrapper>
         <ColumnWrapper>
@@ -192,6 +189,18 @@ const MemberVotePageContainer = styled.div`
 
 const Title = styled.h2`
   margin-bottom: 3rem;
+
+  span{
+    border: solid 0.15rem  ${({theme}) => theme.colors.green};
+    border-radius: 10px;
+    //background-color: ${({theme}) => theme.colors.green};
+    padding: 0.2rem 0.5rem;
+
+    &:hover{
+      cursor: pointer;
+      background-color: ${({theme}) => theme.colors.green};
+    }
+  }
 `
 const MemberListsWrapper = styled.div`
   display: flex;
