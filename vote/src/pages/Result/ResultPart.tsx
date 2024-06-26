@@ -69,7 +69,7 @@ const RankBox = styled.div`
 `;
 
 export default function ResultPart() {
-  const { type } = useParams();
+  const { type } = useParams(); // useParams 훅을 통해 type 값을 받아와서 topicId와 HeaderText를 조건부로 설정
   const navigate = useNavigate();
   const topicId = type === "front" ? 1 : 2;
   const { data } = useGetFinalResult(topicId);
