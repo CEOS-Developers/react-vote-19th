@@ -157,6 +157,7 @@ function MemberVoteResultPage() {
     },
   ];
 
+
   //toggle
   const [isFront, setIsFront] = useState("FRONT");
   const [showingLists, setShowingLists] = useState(frontendLists);
@@ -170,12 +171,15 @@ function MemberVoteResultPage() {
     }
   }
 
+  showingLists.sort((a, b) => b.voteCount - a.voteCount);
+
+
 
   return (
     <MemberVotePageContainer>
       <Title>
-        Who do you want to vote for <br/>
-        <span onClick={togglePart}>{isFront}</span> Leader?
+        Let's check the results of the <br/>
+        <span onClick={togglePart}>{isFront}</span> Leader vote! 🎉
       </Title>
       <MemberListsWrapper>
         <ColumnWrapper>
