@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import InputBox from '../components/InputBox';
 import { Dropdown } from '../components/Dropdown';
-
 import React, { useState } from 'react';
-//import { userAPI } from '../api/request';
 import { useNavigate } from 'react-router-dom';
 import { useSignupMutation } from '../queries/useSignupMutation';
 
@@ -18,13 +16,24 @@ function SignUpPage() {
 	const [name, setName] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [team, setTeam] = useState('');
 	const [role, setRole] = useState('');
 	const [part, setPart] = useState('');
 
 	const isFormValid = () => {
-		return name !== '' && username !== '' && password !== '' && email !== '' && team !== '' && role !== '' && part !== '';
+		return (
+			name !== '' &&
+			username !== '' &&
+			password !== '' &&
+			confirmPassword !== '' &&
+			password === confirmPassword &&
+			email !== '' &&
+			team !== '' &&
+			role !== '' &&
+			part !== ''
+		);
 	};
 
 	const handleSignup = async () => {
@@ -63,9 +72,18 @@ function SignUpPage() {
 					<InputBox
 						placeholder='비밀번호 확인'
 						type='password'
-						value={''}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>) => {}}
+						value={confirmPassword}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setConfirmPassword(e.target.value)
+						}
 					/>
+					{password !== '' && confirmPassword !== '' && (
+						<PasswordMatchMessage isValid={password === confirmPassword}>
+							{password === confirmPassword
+								? '비밀번호가 일치합니다.'
+								: '비밀번호가 일치하지 않습니다.'}
+						</PasswordMatchMessage>
+					)}
 					<InputBox
 						placeholder='이메일 주소'
 						type='email'
@@ -89,7 +107,7 @@ function SignUpPage() {
 					/>
 				</DropdownWrapper>
 				<EnrollBtn onClick={handleSignup} disabled={!isFormValid()}>
-					{isPending ? 'wait plz..' : 'sign up!'}
+					{isPending ? 'wait plz..' : '회원가입'}
 				</EnrollBtn>
 			</SignUpInfoWrapper>
 		</SignUpContainer>
@@ -155,11 +173,17 @@ const EnrollBtn = styled.button`
 	justify-content: center;
 	margin-bottom: 1rem;
 
-	background-color: ${({ disabled,theme }) => (disabled ? 'white' : theme.colors.green)};
+	background-color: ${({ disabled, theme }) =>
+		disabled ? 'white' : theme.colors.green};
 	cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 	color: ${({ disabled }) => (disabled ? 'grey' : 'white')};
 
 	font-size: 1.2rem;
-    font-weight: 520;
+	font-weight: 520;
 `;
 
+const PasswordMatchMessage = styled.div<{ isValid: boolean }>`
+	color: ${({ isValid, theme }) => (isValid ? theme.colors.green : 'red')};
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+`;
