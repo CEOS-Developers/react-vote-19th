@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
 
 interface TeamListsProps {
 	team: {
@@ -11,10 +12,14 @@ interface TeamListsProps {
 	isSelected: boolean;
 }
 
+interface StyledProps {
+	isSelected: boolean;
+}
+
 const TeamLists: React.FC<TeamListsProps> = ({ team, onClick, isSelected }) => {
 
 	return (
-		<TeamListsWrapper>
+		<TeamListsWrapper onClick={onClick} isSelected={isSelected}>
 			<div onClick={onClick}>
 				<TeamName>{team.name}</TeamName>
 				<Introduction>{team.introduction}</Introduction>
@@ -40,7 +45,7 @@ const Introduction = styled.div`
 	word-wrap: break-word;
 `;
 
-const TeamListsWrapper = styled.div`
+const TeamListsWrapper = styled.div<StyledProps>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -62,11 +67,19 @@ const TeamListsWrapper = styled.div`
 	background-clip: border-box, content-box;
 	backdrop-filter: blur(30px);
 
+	${({ isSelected, theme }) =>
+		isSelected &&
+		css`
+			${TeamName}, ${Introduction} {
+				color: ${theme.colors.green};
+			}
+		`}
+
+	cursor: pointer;
+
 	&:hover {
 		${TeamName}, ${Introduction} {
 			color: ${({ theme }) => theme.colors.green};
 		}
 	}
-
-	cursor: pointer;
 `;
