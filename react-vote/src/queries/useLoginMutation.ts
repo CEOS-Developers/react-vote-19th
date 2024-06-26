@@ -24,7 +24,7 @@ export const useLoginMutation = () => {
 				localStorage.setItem('refreshToken', refreshToken);
 
 				// 로그인 후 유저 정보 가져오기
-				const userInfoResponse = await userAPI.getUserInfo(accessToken);
+				const userInfoResponse = await userAPI.getUserInfo();
 				console.log('User Info:', userInfoResponse.data.value);
 
 				// 유저 정보 저장 

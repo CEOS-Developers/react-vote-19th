@@ -40,17 +40,18 @@ export const userAPI = {
 		return await axiosInstance.post('/api/v1/join', data);
 	},
 
-	/*
-  getUserInfo: async () => {
-    return await axiosInstance.get('/api/v1/users');
-  },*/
-	getUserInfo: async (accessToken: string) => {
+	getUserInfo: async () => {
+		return await axiosInstance.get('/api/v1/users');
+	},
+
+    
+	/*getUserInfo: async (accessToken: string) => {
 		return await axiosInstance.get('/api/v1/users', {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
-	},
+	},*/
 	voteTeam: async (teamId: number) => {
 		return await axiosInstance.post(`/api/v1/users/votes/teams/${teamId}`);
 	},
