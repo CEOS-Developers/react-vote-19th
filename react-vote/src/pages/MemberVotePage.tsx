@@ -1,15 +1,14 @@
-import styled from "styled-components"
-import { useState } from "react";
-import MemberLists from "../components/MemberLists";
-
+import styled from 'styled-components';
+import { useState } from 'react';
+import { Dropdown } from '../components/Dropdown';
+import MemberLists from '../components/MemberLists';
 
 interface ReadLeaderResponse {
-  userId: number; 
-  name: string;
-  part: string; //enum인데 어떻게 처리할지 고민
-  team: string;
+	userId: number;
+	name: string;
+	part: string; //enum인데 어떻게 처리할지 고민
+	team: string;
 }
-
 
 function MemberVotePage() {
   const frontendLists : ReadLeaderResponse [] = [
@@ -177,61 +176,53 @@ function MemberVotePage() {
   )
 }
 
-export default MemberVotePage
+export default MemberVotePage;
 
 const MemberVotePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+`;
 
 const Title = styled.h2`
-  margin-bottom: 3rem;
-
-  span{
-    border: solid 0.15rem  ${({theme}) => theme.colors.green};
-    border-radius: 10px;
-    //background-color: ${({theme}) => theme.colors.green};
-    padding: 0.2rem 0.5rem;
-
-    &:hover{
-      cursor: pointer;
-      background-color: ${({theme}) => theme.colors.green};
-    }
-  }
-`
+	margin-bottom: 3rem;
+`;
 const MemberListsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2rem
-`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2rem;
+`;
 
 const ColumnWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
 
 const VoteBtn = styled.div`
-  width: 15vw;
-  height: 5.5vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
+	width: 15vw;
+	height: 5.5vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
 
-  //뒤에 불투명 배경 요소
-  background-color: transparent;
-  border: 0.1rem solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.12)), linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-  background-clip: border-box, content-box;
-  backdrop-filter: blur(30px);
-  
-  color: white;
-  font-size: 1.8rem;
-  font-weight: 550;
-`
+	//뒤에 불투명 배경 요소
+	background-color: transparent;
+	border: 0.1rem solid rgba(255, 255, 255, 0.3);
+	border-radius: 10px;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0.05),
+			rgba(255, 255, 255, 0.12)
+		),
+		linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+	background-clip: border-box, content-box;
+	backdrop-filter: blur(30px);
+
+	color: white;
+	font-size: 1.8rem;
+	font-weight: 550;
+`;

@@ -44,11 +44,8 @@ export const userAPI = {
 		return await axiosInstance.get('/api/v1/users');
 	},
 
-	
 	voteTeam: async (teamId: number) => {
-		return await axiosInstance.post(`/api/v1/users/votes/teams/${teamId}`, {
-			
-		});
+		return await axiosInstance.post(`/api/v1/users/votes/teams/${teamId}`, {});
 	},
 	voteLeader: async (leaderId: number) => {
 		return await axiosInstance.post(`/api/v1/users/votes/leaders/${leaderId}`);
@@ -59,11 +56,8 @@ export const userAPI = {
 	getBackendLeaderResults: async () => {
 		return await axiosInstance.get('/api/v1/users/votes/leaders/back');
 	},
-	getFrontendLeaders: async () => {
-		return await axiosInstance.get('/api/v1/users/leaders/front');
-	},
-	getBackendLeaders: async () => {
-		return await axiosInstance.get('/api/v1/users/leaders/back');
+	getLeaders: async (partName: string) => {
+		return await axiosInstance.get(`/api/v1/users/leaders/${partName}`);
 	},
 };
 
