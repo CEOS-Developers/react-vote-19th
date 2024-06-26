@@ -27,11 +27,14 @@ export const useLoginMutation = () => {
 				const userInfoResponse = await userAPI.getUserInfo();
 				console.log('User Info:', userInfoResponse.data.value);
 
-				// 유저 정보 저장 
+				// 유저 정보 저장
 				localStorage.setItem(
 					'userInfo',
 					JSON.stringify(userInfoResponse.data.value)
 				);
+
+				navigate(`/`);
+                
 			} else if (res.status === 400) {
 				alert('잘못된 아이디/비밀번호입니다.');
 			}
