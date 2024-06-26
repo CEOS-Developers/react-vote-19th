@@ -19,7 +19,7 @@ export const useVoteTeamMutation = () => {
 				alert('로그인이 필요합니다.');
 				navigate('/login');
 			} else {
-				alert(`중복 투표는 불가능합니다.`);
+				alert(`본인의 팀/중복 투표는 불가능합니다.`);
 			}
 		},
 	});
@@ -46,7 +46,7 @@ export const useVoteMemberMutation = () => {
 				alert('로그인이 필요합니다.');
 				navigate('/login');
 			} else {
-				alert(`중복 투표는 불가능합니다.`);
+				alert(`다른 파트/중복 투표는 불가능합니다.`);
 			}
 		},
 	});
