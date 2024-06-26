@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import TeamLists from '../components/TeamLists';
 import { useQuery } from '@tanstack/react-query';
 import { teamAPI } from '../api/request';
-import { useVoteTeamMutation } from '../queries/useVoteTeamMutation';
+import { useVoteTeamMutation } from '../queries/useVoteMutation';
 import React, { useState } from 'react';
 
 interface ReadTeamResponse {
@@ -21,12 +21,12 @@ function TeamVotePage() {
 		},
 	});
 
-	const { vote } = useVoteTeamMutation();
+	const { teamVote } = useVoteTeamMutation();
 	const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null);
 
 	const handleVote = () => {
 		if (selectedTeamId !== null) {
-			vote(selectedTeamId);
+			teamVote(selectedTeamId);
 			console.log(selectedTeamId);
 		} else {
 			alert('투표할 팀을 선택해주세요.');
