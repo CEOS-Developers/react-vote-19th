@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import TeamLists from '../components/TeamLists';
 import { useQuery } from '@tanstack/react-query';
 import { teamAPI } from '../api/request';
+import { useVoteTeamMutation } from '../queries/useVoteTeamMutation';
+import React, { useState } from 'react';
 
 interface ReadTeamResponse {
 	teamId: number; // 정수형으로 사용
@@ -9,35 +11,6 @@ interface ReadTeamResponse {
 	introduction: string;
 }
 
-//api로 받아올 부분
-/*const teamLists : ReadTeamResponse[] = [
-    {
-      teamId: 1,
-      name: "Azito",
-      introduction: "Introduction for Team Azito"
-    },
-    {
-      teamId: 2,
-      name: "BeatBuddy",
-      introduction: "Introduction for Team BeatBuddy"
-    },
-    {
-      teamId: 3,
-      name: "PetPlate",
-      introduction: "Introduction for Team PetPlate"
-    },
-    {
-      teamId: 4,
-      name: "Couplelog",
-      introduction: "Introduction for Team Couplelog"
-    },
-    {
-      teamId: 5,
-      name: "TIG",
-      introduction: "Introduction for Team TIG"
-    }
-  ];
-*/
 function TeamVotePage() {
 	const { data, isLoading, error } = useQuery<ReadTeamResponse[], Error>({
 		queryKey: ['getTeams'],
@@ -48,6 +21,18 @@ function TeamVotePage() {
 		},
 	});
 
+	const { vote } = useVoteTeamMutation();
+	const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null);
+
+	const handleVote = () => {
+		if (selectedTeamId !== null) {
+			vote(selectedTeamId);
+			console.log(selectedTeamId);
+		} else {
+			alert('투표할 팀을 선택해주세요.');
+		}
+	};
+
 	if (isLoading) return <div>Loading...</div>;
 	if (error) return <div>Error fetching teams: {error.message}</div>;
 
@@ -57,10 +42,17 @@ function TeamVotePage() {
 
 			<TeamListsWrapper>
 				{data
-					? data.map((team) => <TeamLists key={team.teamId} team={team} />)
+					? data.map((team) => (
+							<TeamLists
+								key={team.teamId}
+								team={team}
+								onClick={() => setSelectedTeamId(team.teamId)}
+								isSelected={selectedTeamId === team.teamId}
+							/>
+						))
 					: null}
 			</TeamListsWrapper>
-			<VoteBtn>selected !</VoteBtn>
+			<VoteBtn onClick={handleVote}>selected !</VoteBtn>
 		</TeamVotePageContainer>
 	);
 }

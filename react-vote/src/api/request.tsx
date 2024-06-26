@@ -44,7 +44,7 @@ export const userAPI = {
 		return await axiosInstance.get('/api/v1/users');
 	},
 
-    
+
 	/*getUserInfo: async (accessToken: string) => {
 		return await axiosInstance.get('/api/v1/users', {
 			headers: {
@@ -52,8 +52,13 @@ export const userAPI = {
 			},
 		});
 	},*/
-	voteTeam: async (teamId: number) => {
-		return await axiosInstance.post(`/api/v1/users/votes/teams/${teamId}`);
+	voteTeam: async (teamId: number,accessToken: string) => {
+		return await axiosInstance.post(`/api/v1/users/votes/teams/${teamId}`,	{
+            headers: {
+            Authorization: `Bearer ${accessToken}`},
+        },)
+		
+	
 	},
 	voteLeader: async (leaderId: number) => {
 		return await axiosInstance.post(`/api/v1/users/votes/leaders/${leaderId}`);

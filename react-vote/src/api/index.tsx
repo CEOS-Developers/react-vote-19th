@@ -11,15 +11,22 @@ const axiosInstance = axios.create({
 	// 쿠키를 포함한 요청을 할 때는 credentials 옵션을 설정해야 한다는 사실..!
 });
 
-// 요청 인터셉터
-axiosInstance.interceptors.request.use((config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  });
-  
+axiosInstance.interceptors.request.use(
+	(config) => {
+		const token = localStorage.getItem('accessToken');
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+			console.log('Authorization header set:', config.headers.Authorization); // 로그 추가
+		} else {
+			console.log('No token found');
+		}
+		return config;
+	},
+	(error) => {
+		return Promise.reject(error);
+	}
+);
+
 /*
 axiosInstance.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
