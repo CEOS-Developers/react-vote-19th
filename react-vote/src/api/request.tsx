@@ -24,7 +24,7 @@ export const authAPI = {
 	logout: async (accessToken: string) => {
 		return await axiosInstance.post('/api/v1/auth/logout', null, {
 			headers: {
-				Authorization: `Bearer ${accessToken}`,
+				accessToken,
 			},
 		});
 	},
