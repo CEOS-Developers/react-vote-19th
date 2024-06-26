@@ -1,9 +1,17 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useLogoutMutation } from "../queries/useLogoutMutation";
+
 
 function Header() {
 
   const token = localStorage.getItem('accessToken');
+  const { logout, } = useLogoutMutation();
+
+  const handleLogout = () => {
+    logout();
+  };
+
 
   return (
     <HeaderContainer>
@@ -13,7 +21,14 @@ function Header() {
         </Link>
       </MainIcon>
       <BtnWrapper>
-        <StyledLink to="/login">login</StyledLink>
+      {!token &&<StyledLink to="/login">login</StyledLink>}
+      {!token && <StyledLink to="/login">login</StyledLink>}
+        {token && (
+          <StyledLink to="/" onClick={handleLogout}>
+           'logout'
+          </StyledLink>
+        )}
+
         {!token && <StyledLink to="/signup">sign up</StyledLink>}
       </BtnWrapper>
     </HeaderContainer>
