@@ -21,7 +21,7 @@ export const useSignupMutation = () => {
 			} else if (res.status === 404) {
 				alert('존재하지 않는 팀입니다.');
 			} else if (res.status === 400) {
-				alert('잘못된 요청입니다.');
+				alert(' 요청입니다.');
 			} else {
 				alert('회원가입 오류: ' + res.data.message);
 			}
@@ -41,7 +41,7 @@ export const useSignupMutation = () => {
 			} else if (error.response.status === 404) {
 				alert('존재하지 않는 팀입니다.');
 			} else if (error.response.status === 400) {
-				alert('잘못된 요청입니다.');
+				alert('유효하지 않은 이메일 양식입니다.');
 			} else {
 				alert('회원가입 오류: ' + error.response.data.message);
 			}
