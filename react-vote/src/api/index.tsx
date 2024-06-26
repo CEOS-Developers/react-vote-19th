@@ -1,7 +1,7 @@
 import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'http://testeveytime.shop/';
+const BASE_URL = 'https://testeveytime.shop/';
 
 axios.defaults.withCredentials = true; // 혹시 모르니..
 
