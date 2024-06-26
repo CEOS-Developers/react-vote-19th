@@ -45,26 +45,39 @@ export const Dropdown: React.FC<DropdownProps> = ({ listsName, lists, onChange }
 const DropdownContainer = styled.div`
     display: flex;
     flex-direction: column;
+    position: relative;
+    width: 30%;
 `
 
 const DropdownBtnContainer = styled.div`
     cursor: pointer;
-    border: 0.1rem solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    background-color: beige;
-    width: 10rem;
-    height: 3rem;
+    border: none;
+    border-radius: 10px;
+    background-color: ${({theme}) => theme.colors.green};
     margin-bottom: 0.3rem;
     display: flex;
-  align-items: center;
-  justify-content: center; 
+    align-items: center;
+    justify-content: center; 
+    height: 3rem;
+
+    font-size: 1.2rem;
+    font-weight: 520;
+    color: white;
+
+    &:hover {
+      color: ${({theme}) => theme.colors.yellow};;
+    }
 `;
 
 const ListWrapper = styled.ul`
-    border: 0.1rem solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    background-color: beige;
-    width: 10rem;
+    border: none;
+    border-radius: 10px;
+    background-color: ${({theme}) => theme.colors.green};
+    position: absolute;
+    padding: 0.5rem 2rem;
+    top: 100%;
+    left: 0;
+    z-index: 10;
 `;
 
 const ListItem = styled.li`
@@ -73,4 +86,12 @@ const ListItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+
+    &:hover {
+      color: ${({theme}) => theme.colors.yellow};;
+    }
     `;

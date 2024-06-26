@@ -14,20 +14,26 @@ interface ReadLeaderResponse {
 function MemberVotePage() {
   const frontendLists : ReadLeaderResponse [] = [
       {
+        "userId": 0,
+        "name": "이나현",
+        "part": "FRONT",
+        "team": "Azito"
+      },
+      {
         "userId": 1,
-        "name": "ㅇㅇ",
+        "name": "조유담",
         "part": "FRONT",
         "team": "Azito"
       },
       {
         "userId": 2,
-        "name": "이지인",
+        "name": "김동혁",
         "part": "FRONT",
-        "team": "Azito"
+        "team": "Beatbuddy"
       },
       {
         "userId": 3,
-        "name": "이지",
+        "name": "김수현",
         "part": "FRONT",
         "team": "Beatbuddy"
       },
@@ -35,41 +41,35 @@ function MemberVotePage() {
         "userId": 4,
         "name": "이지인",
         "part": "FRONT",
-        "team": "Beatbuddy"
+        "team": "PetPlate"
       },
       {
         "userId": 5,
-        "name": "이지인",
+        "name": "김다희",
         "part": "FRONT",
         "team": "PetPlate"
       },
       {
         "userId": 6,
-        "name": "이지인",
+        "name": "김민영",
         "part": "FRONT",
-        "team": "PetPlate"
+        "team": "Couplelog"
       },
       {
         "userId": 7,
-        "name": "이지인",
+        "name": "안혜연",
         "part": "FRONT",
         "team": "Couplelog"
       },
       {
         "userId": 8,
-        "name": "이지인",
-        "part": "FRONT",
-        "team": "Couplelog"
-      },
-      {
-        "userId": 9,
-        "name": "이지인",
+        "name": "김승완",
         "part": "FRONT",
         "team": "TIG"
       },
       {
-        "userId": 10,
-        "name": "이지인",
+        "userId": 9,
+        "name": "송은수",
         "part": "FRONT",
         "team": "TIG"
       }
