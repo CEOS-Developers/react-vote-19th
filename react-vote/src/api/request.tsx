@@ -50,11 +50,8 @@ export const userAPI = {
 	voteLeader: async (leaderId: number) => {
 		return await axiosInstance.post(`/api/v1/users/votes/leaders/${leaderId}`);
 	},
-	getFrontendLeaderResults: async () => {
-		return await axiosInstance.get('/api/v1/users/votes/leaders/front');
-	},
-	getBackendLeaderResults: async () => {
-		return await axiosInstance.get('/api/v1/users/votes/leaders/back');
+	getLeaderResults: async (partName: string) => {
+		return await axiosInstance.get(`/api/v1/users/votes/leaders/${partName}`);
 	},
 	getLeaders: async (partName: string) => {
 		return await axiosInstance.get(`/api/v1/users/leaders/${partName}`);
