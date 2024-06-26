@@ -87,11 +87,6 @@ function SignUpPage() {
 						lists={partLists}
 						onChange={(selectedPart: string) => setPart(selectedPart)}
 					/>
-					<Dropdown
-						listsName='role'
-						lists={roleLists}
-						onChange={(selectedRole: string) => setRole(selectedRole)}
-					/>
 				</DropdownWrapper>
 				<EnrollBtn onClick={handleSignup} disabled={!isFormValid()}>
 					{isPending ? 'wait plz..' : 'sign up!'}

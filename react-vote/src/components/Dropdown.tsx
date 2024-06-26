@@ -46,7 +46,7 @@ const DropdownContainer = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 30%;
+    width: 48%;
 `
 
 const DropdownBtnContainer = styled.div`

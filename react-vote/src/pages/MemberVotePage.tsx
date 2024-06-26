@@ -108,6 +108,17 @@ const MemberVotePageContainer = styled.div`
 
 const Title = styled.h2`
 	margin-bottom: 3rem;
+	
+	span {
+    border: solid 0.15rem ${({ theme }) => theme.colors.green};
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.colors.green};
+    }
+  }
 `;
 const MemberListsWrapper = styled.div`
 	display: flex;
