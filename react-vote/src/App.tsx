@@ -10,10 +10,12 @@ import TeamVoteResultPage from "./pages/TeamVoteResultPage";
 import MemberVoteResultPage from "./pages/MemberVoteResultPage";
 
 function App() {
+
+
   return (
     <AppContainer>
       <BrowserRouter>
-        <Header />
+       <Header />
           <Routes>
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/signup" element={<SignUpPage/>} />

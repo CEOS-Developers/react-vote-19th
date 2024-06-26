@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 function Header() {
+
+  const token = localStorage.getItem('accessToken');
+
   return (
     <HeaderContainer>
       <MainIcon>
@@ -11,7 +14,7 @@ function Header() {
       </MainIcon>
       <BtnWrapper>
         <StyledLink to="/login">login</StyledLink>
-        <StyledLink to="/signup">sign up</StyledLink>
+        {!token && <StyledLink to="/signup">sign up</StyledLink>}
       </BtnWrapper>
     </HeaderContainer>
   );
