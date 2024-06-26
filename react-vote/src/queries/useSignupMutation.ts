@@ -24,10 +24,8 @@ export const useSignupMutation = () => {
 		},
 
 		onSuccess: (res: any) => {
-			if (res.status === 201) {
-				alert('회원가입 성공! 이제 로그인 하세요.');
-				navigate(`/login`);
-			}
+			alert('회원가입 성공! 이제 로그인 하세요.');
+			navigate(`/login`);
 		},
 
 		onError: (error: any) => {
