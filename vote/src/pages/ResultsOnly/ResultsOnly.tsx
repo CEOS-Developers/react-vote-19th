@@ -38,6 +38,12 @@ const VoteWrapper = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 2rem;
   border: 1px solid ${({ theme }) => theme.colors.main_blue};
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 export default function ResultsOnly() {
