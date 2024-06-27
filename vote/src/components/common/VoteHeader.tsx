@@ -1,6 +1,5 @@
 import { LogoIc } from "@assets/index";
 import styled from "styled-components";
-import SignBtn from "@components/common/SignBtn";
 import { useNavigate } from "react-router-dom";
 
 const LogoWrapper = styled.div`
@@ -50,11 +49,7 @@ export default function VoteHeader() {
       <LogoWrapper onClick={() => navigate("/vote/main")}>
         <LogoIcon />
       </LogoWrapper>
-      <BtnContainer>
-        {info && <UserName>{info} 님</UserName>}
-        {!info && <SignBtn text="로그인" />}
-        {!info && <SignBtn text="회원가입" />}
-      </BtnContainer>
+      <BtnContainer>{info && <UserName>{info} 님</UserName>}</BtnContainer>
     </HeaderContainer>
   );
 }

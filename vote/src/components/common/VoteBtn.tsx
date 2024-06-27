@@ -6,6 +6,11 @@ interface VoteBtnProps {
   text: string;
 }
 
+const Wrapper = styled.section`
+  display: flex;
+  justify-content: center;
+`;
+
 const Button = styled(BtnMid)<{
   width?: string;
   height?: string;
@@ -21,8 +26,10 @@ export default function VoteBtn(props: VoteBtnProps) {
   const $seeResult = text === "결과보기";
 
   return (
-    <Button $seeResult={$seeResult} onClick={onClick}>
-      <p>{text}</p>
-    </Button>
+    <Wrapper>
+      <Button $seeResult={$seeResult} onClick={onClick}>
+        <p>{text}</p>
+      </Button>
+    </Wrapper>
   );
 }

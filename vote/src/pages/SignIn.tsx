@@ -12,6 +12,11 @@ const Wrapper = styled.div`
   padding: 14.5rem 20.25rem;
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Header = styled.h1`
   ${({ theme }) => theme.fonts.Headline2};
 `;
@@ -41,6 +46,15 @@ const SignInBtn = styled(BtnSign)`
   height: 3.625rem;
 `;
 
+const ShowResultBtn = styled.button`
+  width: 25rem;
+  height: 5rem;
+
+  color: ${({ theme }) => theme.colors.black};
+  ${({ theme }) => theme.fonts.TeamDetail};
+  background-color: ${({ theme }) => theme.colors.active};
+`;
+
 export default function SignIn() {
   const [ID, setId] = useState("");
   const [PW, setPw] = useState("");
@@ -65,7 +79,12 @@ export default function SignIn() {
 
   return (
     <Wrapper>
-      <Header>로그인</Header>
+      <Container>
+        <Header>로그인</Header>
+        <ShowResultBtn onClick={() => navigate("/results-only")}>
+          결과만 보기
+        </ShowResultBtn>
+      </Container>
       <Section>
         <FilledInput>
           <InputContainer name="ID" state={ID} setState={setId} />
