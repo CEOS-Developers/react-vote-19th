@@ -43,14 +43,17 @@ export default function VoteHeader() {
   const info = savedData ? JSON.parse(savedData) : [];
   const navigate = useNavigate();
 
+  console.log(info);
+
   return (
     <HeaderContainer as="header">
       <LogoWrapper onClick={() => navigate("/vote/main")}>
         <LogoIcon />
       </LogoWrapper>
       <BtnContainer>
-        <UserName>{info} 님</UserName>
-        <SignBtn text="로그아웃" />
+        {info && <UserName>{info} 님</UserName>}
+        {!info && <SignBtn text="로그인" />}
+        {!info && <SignBtn text="회원가입" />}
       </BtnContainer>
     </HeaderContainer>
   );
