@@ -1,22 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { CookiesProvider } from "react-cookie";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      suspense: true,
-      useErrorBoundary: true,
-      retry: 0,
-    },
-  },
-});
+import App from "./App.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+  <CookiesProvider>
+    <React.StrictMode>
       <App />
-    </QueryClientProvider>
-  </React.StrictMode>,
+    </React.StrictMode>
+  </CookiesProvider>,
 );

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "@components/layout/RootLayout";
 import Error from "@pages/Error";
 import SignIn from "@pages/SignIn";
 import Signup from "@pages/SignUp";
@@ -14,11 +13,12 @@ import ResultDemo from "@pages/Result/ResultDemo";
 import ResultsOnly from "@pages/ResultsOnly/ResultsOnly";
 import ResultsOnlyDemo from "@pages/ResultsOnly/ResultsOnlyDemo";
 import ResultsOnlyPart from "@pages/ResultsOnly/ResultsOnlyPart";
+import Interceptors from "@components/Interceptors";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: <Interceptors />,
     errorElement: <Error />,
     children: [
       { index: true, element: <SignIn /> },
