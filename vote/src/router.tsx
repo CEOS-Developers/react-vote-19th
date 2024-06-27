@@ -9,9 +9,11 @@ import SelectPart from "@pages/Vote/SelectPart";
 import SelectDemo from "@pages/Vote/SelectDemo";
 import VotePart from "@pages/Vote/VotePart";
 import VoteDemo from "@pages/Vote/VoteDemo";
-import ResultLayout from "@components/layout/VoteLayout";
 import ResultPart from "@pages/Result/ResultPart";
 import ResultDemo from "@pages/Result/ResultDemo";
+import ResultsOnly from "@pages/ResultsOnly/ResultsOnly";
+import ResultsOnlyDemo from "@pages/ResultsOnly/ResultsOnlyDemo";
+import ResultsOnlyPart from "@pages/ResultsOnly/ResultsOnlyPart";
 
 export const Router = createBrowserRouter([
   {
@@ -19,9 +21,14 @@ export const Router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <VoteMain /> },
+      { index: true, element: <SignIn /> },
       { path: "/signin", element: <SignIn /> },
       { path: "/signup", element: <Signup /> },
+
+      { path: "/results-only", element: <ResultsOnly /> },
+      { path: "/results-only/demo", element: <ResultsOnlyDemo /> },
+      { path: "results-only/:type", element: <ResultsOnlyPart /> },
+
       {
         path: "/vote",
         element: <VoteLayout />,
@@ -33,14 +40,9 @@ export const Router = createBrowserRouter([
           { path: "/vote/demo", element: <VoteDemo /> },
         ],
       },
-      {
-        path: "/result",
-        element: <ResultLayout />,
-        children: [
-          { path: "/result/:type", element: <ResultPart /> },
-          { path: "/result/demo", element: <ResultDemo /> },
-        ],
-      },
+
+      { path: "/result/:type", element: <ResultPart /> },
+      { path: "/result/demo", element: <ResultDemo /> },
     ],
   },
 ]);
