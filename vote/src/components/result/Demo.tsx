@@ -78,7 +78,7 @@ export default function Demo() {
     return (
       <Section>
         <CenterWrapper>
-          <HeaderText>BE 파트장 투표 결과</HeaderText>
+          <HeaderText>데모데이 투표 결과</HeaderText>
           <VoteWrappers>
             {sortedData.map((item, index) => (
               <VoteWrapper
